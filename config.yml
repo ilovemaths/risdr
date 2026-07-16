@@ -1,0 +1,29 @@
+paths:
+  simulation_output: analysis/results-corrected
+
+simulation:
+  replications: 200
+  sample_sizes: [100, 200]
+  predictor_counts: [50, 100, 200]
+  correlations: [0.50, 0.80, 0.95]
+  true_dimension: 2
+  error_sd: 1
+  signal_strength: 1
+  signal_model: linear_quadratic
+  basis_type: random_sparse
+  slices: 6
+  maximum_dimension: 5
+  selector: cicomp
+  covariance_methods: [sample, ridge, oas, lw, mec]
+  sdr_methods: [sir, save, dr, phd]
+  seeds:
+    simulation_a_train: 100000
+    simulation_a_test: 500000
+    simulation_b1_train: 200000
+    simulation_b1_test: 600000
+    simulation_b2_train: 300000
+
+execution:
+  studies: [A, B1, B2]
+  verbose: true
+  stop_on_failure: false

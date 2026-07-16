@@ -1,0 +1,147 @@
+---
+title: "Structural Dimension Selection"
+output: rmarkdown::html_vignette
+bibliography: references.bib
+vignette: >
+  %\VignetteIndexEntry{Structural Dimension Selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Selection problem
+
+An SDR kernel produces an ordered basis, but the structural dimension
+`d` must still be selected. `risdr` supports AIC, BIC, CAIC, ICOMP,
+CICOMP, predictive cross-validation, a complexity-aware cross-validation
+family, and a bootstrap ladle diagnostic. ICOMP adds a covariance-complexity
+penalty to fit [@bozdogan2000icomp].
+
+## Information criteria
+
+```{r}
+library(risdr)
+
+sim <- simulate_risdr_data(
+  n = 150,
+  p = 18,
+  d = 2,
+  rho = 0.6,
+  seed = 8101
+)
+
+fit <- fit_risdr(
+  sim$X,
+  sim$y,
+  sdr_method = "dr",
+  cov_method = "oas",
+  d_max = 6,
+  selector = "cicomp"
+)
+
+fit$d_table
+fit$d
+```
+
+Criterion weights provide a relative summary within the candidate set:
+
+```{r}
+criterion_weights(fit$d_table, criterion = "CICOMP")
+```
+
+They are not posterior probabilities and do not establish that a candidate set
+contains the true dimension.
+
+## Predictive cross-validation
+
+```{r}
+cv <- select_dimension_cv(
+  sim$X,
+  sim$y,
+  sdr_method = "dr",
+  cov_method = "oas",
+  d_max = 5,
+  v = 5,
+  metric = "RMSE",
+  seed = 8101
+)
+
+cv$selected_d
+cv$cv_table
+```
+
+All standardisation and covariance estimation occur inside the training fold.
+This prevents validation observations from influencing the fitted projection.
+
+## Complexity-aware cross-validation
+
+For candidate `d`, the combined criterion rescales prediction error and an
+information criterion to `[0,1]`, then uses
+
+\[
+\operatorname{CVIC}(d)
+= \widetilde{\operatorname{RMSE}}(d)
++ \lambda\widetilde{\operatorname{IC}}(d).
+\]
+
+```{r}
+cv_icomp <- select_dimension_cv_icomp(
+  sim$X,
+  sim$y,
+  sdr_method = "dr",
+  cov_method = "oas",
+  d_max = 5,
+  v = 5,
+  lambda = 1,
+  seed = 8101
+)
+
+cv_icomp$cv_table
+cv_icomp[c(
+  "selected_d_rmse",
+  "selected_d_cvbic",
+  "selected_d_cvcaic",
+  "selected_d_cvcicomp"
+)]
+```
+
+`lambda` should be examined through sensitivity analysis. It is a
+decision weight, not a parameter estimated by the likelihood.
+
+## Ladle diagnostic
+
+```{r}
+ladle <- select_dimension_ladle(
+  sim$X,
+  sim$y,
+  sdr_method = "dr",
+  cov_method = "oas",
+  d_max = 4,
+  B = 20,
+  seed = 8101
+)
+
+ladle$selected_d
+ladle$ladle_table
+```
+
+The implemented ladle is a diagnostic combining residual eigenvalue mass with
+bootstrap subspace instability. It should be reported as a complementary
+diagnostic rather than treated as an infallible selector.
+
+## Decision protocol
+
+A defensible selection report should state:
+
+1. the candidate range for `d`;
+2. the SDR and covariance estimators;
+3. the slicing and stabilisation settings;
+4. every criterion examined;
+5. the resampling design and seed;
+6. whether selectors agree;
+7. the sensitivity of substantive conclusions to `d`.
+
+## References

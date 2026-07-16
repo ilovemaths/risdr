@@ -1,0 +1,190 @@
+---
+title: "Environmental Performance Index Case Study"
+output: rmarkdown::html_vignette
+bibliography: references.bib
+vignette: >
+  %\VignetteIndexEntry{Environmental Performance Index Case Study}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Role of the case study
+
+The completed thesis analysed the 2024 Environmental Performance Index corpus
+for 180 countries. After missingness screening, low-variance filtering, and
+imputation, 70 predictor indicators were retained alongside the EPI response.
+The `.old` columns formed the training data and the aligned `.new` columns
+formed the test data.
+
+Version 0.3.0 includes the supplied processed predictor and response matrices.
+The paired predictor matrices contain the same 70 named indicators and no
+missing values. Selected supplied output tables are retained separately as
+provenance fixtures.
+
+## Bundled processed inputs
+
+```{r}
+read_epi_file <- function(name) {
+  utils::read.csv(
+    system.file("extdata", "epi", name, package = "risdr"),
+    check.names = FALSE
+  )
+}
+
+X_train <- read_epi_file("X_old.csv")
+X_test <- read_epi_file("X_new.csv")
+y_train <- read_epi_file("y_old.csv")[[1L]]
+y_test <- read_epi_file("y_new.csv")[[1L]]
+
+stopifnot(
+  nrow(X_train) == 180L,
+  nrow(X_test) == 180L,
+  ncol(X_train) == 70L,
+  identical(names(X_train), names(X_test)),
+  length(y_train) == nrow(X_train),
+  length(y_test) == nrow(X_test)
+)
+```
+
+## Original import and alignment protocol
+
+The transformation from the original EPI corpus should follow the structure
+below. It is not evaluated because the single source corpus is separate from
+the processed analysis matrices.
+
+```{r raw-data-protocol, eval=FALSE}
+library(dplyr)
+library(readr)
+
+epi_data <- read_csv("data-raw/epi2024results.csv", show_col_types = FALSE)
+
+epi_old <- epi_data |>
+  select(iso, country, ends_with(".old")) |>
+  rename_with(\(x) sub("[.]old$", "", x))
+
+epi_new <- epi_data |>
+  select(iso, country, ends_with(".new")) |>
+  rename_with(\(x) sub("[.]new$", "", x))
+
+X_old_full <- epi_old |> select(-iso, -country)
+X_new_full <- epi_new |> select(-iso, -country)
+
+stopifnot(identical(names(X_old_full), names(X_new_full)))
+
+missing_prop_old <- colMeans(is.na(X_old_full))
+keep_names <- names(missing_prop_old[missing_prop_old < 0.40])
+
+X_old_reduced <- X_old_full[, keep_names, drop = FALSE]
+X_new_reduced <- X_new_full[, keep_names, drop = FALSE]
+
+training_variance <- vapply(X_old_reduced, var, numeric(1), na.rm = TRUE)
+keep_names <- names(training_variance[training_variance > 1e-6])
+
+X_old_reduced <- X_old_reduced[, keep_names, drop = FALSE]
+X_new_reduced <- X_new_reduced[, keep_names, drop = FALSE]
+
+X_old_imputed <- VIM::kNN(X_old_reduced, k = 5, imp_var = FALSE)
+X_new_imputed <- VIM::kNN(X_new_reduced, k = 5, imp_var = FALSE)
+
+y_train <- X_old_imputed$EPI
+X_train <- X_old_imputed |> select(-EPI)
+y_test <- X_new_imputed$EPI
+X_test <- X_new_imputed |> select(-EPI)
+```
+
+Filtering and imputation choices must be estimated from the training data and
+then applied to the test data. Re-estimating preprocessing independently on the
+test data would weaken the interpretation of external prediction.
+
+## Fitting template
+
+```{r fitting-template, eval=FALSE}
+fit_epi <- fit_risdr(
+  X = X_train,
+  y = y_train,
+  sdr_method = "phd",
+  cov_method = "oas",
+  nslices = 6,
+  d_max = 10,
+  selector = "cicomp",
+  standardize = TRUE,
+  stabilize = TRUE
+)
+
+epi_prediction <- predict(fit_epi, X_test)
+evaluate_prediction(y_test, epi_prediction, d = fit_epi$d)
+```
+
+The thesis primary predictive comparison reports pHd as its best method, with
+approximately RMSE 2.905, MAE 2.321, `R^2` 0.935, adjusted `R^2`
+0.933, and correlation 0.967. These values belong to that designated primary
+comparison.
+
+## Broader method-covariance audit
+
+The package fixture below records a separate comparison across four SDR methods
+and five covariance estimators. It should not be conflated with the primary
+thesis comparison because the model grid and selected dimensions differ.
+
+```{r}
+comparison_path <- system.file(
+  "extdata",
+  "epi",
+  "epi_sdr_covariance_comparison_tidy.csv",
+  package = "risdr"
+)
+comparison <- utils::read.csv(comparison_path)
+
+comparison[
+  order(comparison$RMSE),
+  c(
+    "sdr_method", "cov_method", "selected_d", "condition_number",
+    "RMSE", "MAE", "R2", "Adjusted_R2", "Correlation"
+  )
+]
+```
+
+This audit demonstrates why predictive performance, structural dimension, and
+covariance conditioning must be reported together. A method may predict well
+under one estimator while retaining a different number of directions under
+another.
+
+## Repeated cross-validation
+
+```{r}
+cv_path <- system.file(
+  "extdata",
+  "epi",
+  "epi_repeated_cv_summary_tidy.csv",
+  package = "risdr"
+)
+cv_summary <- utils::read.csv(cv_path)
+
+cv_summary[
+  order(cv_summary$mean_RMSE),
+  c(
+    "sdr_method", "cov_method", "n_success", "mean_selected_d",
+    "mean_RMSE", "sd_RMSE", "mean_Adjusted_R2", "mean_Correlation"
+  )
+]
+```
+
+The repeated assessment identifies SIR with ridge and SIR with OAS as highly
+competitive combinations. This complements, rather than replaces, the fixed
+old-to-new comparison.
+
+## Interpretation discipline
+
+The EPI case study supports three distinct conclusions:
+
+1. Prediction, subspace recovery, and structural dimension recovery are
+   different objectives.
+2. Covariance regularisation can materially improve numerical conditioning.
+3. A single overall winner should not be declared without naming the objective,
+   validation design, and covariance estimator.
+
+## References

@@ -1,0 +1,87 @@
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+development:
+  mode: auto
+
+home:
+  title: risdr
+  description: >
+    Regularised sufficient dimension reduction with covariance stabilisation,
+    information-theoretic structural dimension selection, prediction, and
+    simulation tools.
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search]
+
+articles:
+  - title: Core workflow
+    navbar: Core workflow
+    contents:
+      - getting-started
+      - epi-case-study
+  - title: Methods
+    navbar: Methods
+    contents:
+      - covariance-regularisation
+      - structural-dimension-selection
+      - simulation-study
+
+reference:
+  - title: Package overview
+    contents:
+      - risdr-package
+  - title: Model fitting and methods
+    contents:
+      - fit_risdr
+      - starts_with("compute_")
+      - extract_loadings
+      - starts_with("predict.")
+      - starts_with("summary.")
+      - starts_with("print.")
+  - title: Covariance estimation and stabilisation
+    contents:
+      - starts_with("cov_")
+      - estimate_cov
+      - starts_with("stabilize_")
+  - title: Structural dimension selection
+    contents:
+      - select_dimension
+      - choose_dimension
+      - criterion_weights
+      - select_dimension_cv
+      - select_dimension_cv_icomp
+      - select_dimension_ladle
+      - make_cv_folds
+      - starts_with("plot_")
+  - title: Prediction and assessment
+    contents:
+      - fit_downstream_lm
+      - predict_downstream_lm
+      - evaluate_prediction
+      - evaluate_prediction_cv
+      - rmse
+      - mae
+      - mape
+      - r_squared
+      - adjusted_r_squared
+      - prediction_correlation
+  - title: Slicing and simulation
+    contents:
+      - make_slices
+      - starts_with("slice_")
+      - simulate_risdr_data
+      - run_one_simulation
+      - run_risdr_simulation
+      - summarise_simulation
+      - ar1_covariance
+      - projection_matrix
+      - subspace_distance
+  - title: Real-data helpers
+    contents:
+      - filter_low_variance
+      - prepare_survival_response
+      - fit_risdr_realdata

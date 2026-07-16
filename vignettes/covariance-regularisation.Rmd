@@ -1,0 +1,171 @@
+---
+title: "Covariance Regularisation"
+output: rmarkdown::html_vignette
+bibliography: references.bib
+vignette: >
+  %\VignetteIndexEntry{Covariance Regularisation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Motivation
+
+Inverse-regression methods commonly require covariance standardisation. When
+predictors are strongly collinear or the predictor dimension is not small
+relative to the sample size, the sample covariance matrix may be poorly
+conditioned or singular. Regularisation changes the bias-variance trade-off to
+obtain a more stable inverse.
+
+`risdr` includes sample covariance, ridge shrinkage, OAS
+[@chenetal2010oas], LW [@ledoitwolf2004], and MEC.
+
+## Comparison on a controlled design
+
+```{r}
+library(risdr)
+
+sim <- simulate_risdr_data(
+  n = 100,
+  p = 40,
+  d = 2,
+  rho = 0.9,
+  seed = 7001
+)
+
+estimates <- list(
+  sample = cov_sample(sim$X),
+  ridge = cov_ridge(sim$X, lambda = 0.10),
+  oas = cov_oas(sim$X),
+  lw = cov_lw(sim$X),
+  mec = cov_mec(sim$X, sim$y, nslices = 6)
+)
+
+diagnostics <- do.call(
+  rbind,
+  lapply(names(estimates), function(name) {
+    value <- cov_diagnostics(estimates[[name]])
+    data.frame(
+      estimator = name,
+      minimum_eigenvalue = value$min_eigenvalue,
+      maximum_eigenvalue = value$max_eigenvalue,
+      condition_number = value$condition_number,
+      effective_rank = value$effective_rank
+    )
+  })
+)
+
+diagnostics
+```
+
+Condition number and effective rank describe numerical behaviour, not
+predictive adequacy. They should be interpreted alongside downstream and
+subspace metrics.
+
+## Ridge estimator
+
+For sample covariance `\mathbf{S}` and scaled identity target
+`\mathbf{T}`, the ridge estimator is
+
+\[
+\widehat{\boldsymbol{\Sigma}}_{\lambda}
+= (1-\lambda)\mathbf{S}+\lambda\mathbf{T},
+\qquad 0\leq\lambda\leq 1.
+\]
+
+```{r}
+ridge_fit <- fit_risdr(
+  sim$X,
+  sim$y,
+  sdr_method = "sir",
+  cov_method = "ridge",
+  d = 2,
+  d_max = 5,
+  cov_args = list(lambda = 0.15)
+)
+```
+
+## Post-estimation stabilisation
+
+Covariance estimation and numerical stabilisation are separate operations.
+An estimated covariance may be stabilised using an eigenvalue floor, an
+additive ridge term, or a nearest positive-definite projection.
+
+```{r}
+sample_covariance <- cov_sample(sim$X)
+
+floor_covariance <- stabilize_cov(
+  sample_covariance,
+  method = "eigenfloor",
+  eps = 1e-6
+)
+
+ridge_covariance <- stabilize_cov(
+  sample_covariance,
+  method = "ridge",
+  lambda = 1e-4
+)
+
+nearest_covariance <- stabilize_cov(
+  sample_covariance,
+  method = "nearest_pd",
+  keep_diag = TRUE
+)
+```
+
+The `fit_risdr()` interface separates these controls:
+
+```{r}
+separated_controls <- fit_risdr(
+  sim$X,
+  sim$y,
+  sdr_method = "dr",
+  cov_method = "ridge",
+  stabilization = "eigenfloor",
+  d = 2,
+  d_max = 5,
+  cov_args = list(lambda = 0.10),
+  stabilization_args = list(eps = 1e-7)
+)
+```
+
+## Legacy Simulation A outputs
+
+```{r}
+simulation_path <- system.file(
+  "extdata",
+  "simulation",
+  "simulation_A_final_covariance_DR_summary_tidy.csv",
+  package = "risdr"
+)
+simulation_a <- utils::read.csv(simulation_path)
+
+aggregate(
+  cbind(
+    mean_subspace_distance,
+    mean_RMSE,
+    mean_condition_number,
+    mean_runtime_seconds
+  ) ~ cov_method,
+  data = simulation_a,
+  FUN = mean
+)
+```
+
+The supplied Simulation A record favours OAS and ridge for conditioning. Its
+prediction columns require rerun because the original script regenerated the
+random true basis for the test sample. The table is retained here for
+provenance and must not be treated as a newly validated v0.3.0 result.
+
+## Maximum Entropy Covariance
+
+The Maximum Entropy Covariance (MEC) estimator follows the covariance
+estimation approach proposed by @olorede2019newcovarianceestimatorsufficient
+for sufficient dimension reduction in high-dimensional and undersized-sample
+settings. The estimator uses response slicing, selects the slice covariance with the largest stabilised log determinant, and combines it with the pooled covariance through convex shrinkage. This definition is authoritative for the package documentation, software papers, and subsequent releases.
+
+## References  
+<div id="refs"></div>

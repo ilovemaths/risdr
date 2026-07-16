@@ -1,0 +1,203 @@
+---
+title: "Simulation Study"
+output: rmarkdown::html_vignette
+bibliography: references.bib
+vignette: >
+  %\VignetteIndexEntry{Simulation Study}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Objectives
+
+The completed research programme separates three simulation questions:
+
+1. Simulation A compares covariance estimators while holding DR fixed.
+2. Simulation B1 compares SDR subspace estimation while holding OAS fixed.
+3. Simulation B2 compares structural dimension recovery while holding OAS
+   fixed.
+
+This separation avoids declaring one method universally best when the
+evaluation objectives differ.
+
+## Data-generating mechanism
+
+`simulate_risdr_data()` generates
+
+\[
+\mathbf{X}\sim N_p(\mathbf{0},\boldsymbol{\Sigma}),\qquad
+\Sigma_{jk}=\rho^{|j-k|},
+\]
+
+and constructs a response from the sufficient predictors
+`\mathbf{B}^{\mathsf{T}}\mathbf{X}`.
+
+```{r}
+library(risdr)
+
+sim <- simulate_risdr_data(
+  n = 120,
+  p = 30,
+  d = 2,
+  rho = 0.8,
+  sigma = 1,
+  model = "linear_quadratic",
+  beta_type = "coordinate",
+  seed = 9201
+)
+
+dim(sim$X)
+crossprod(sim$beta)
+```
+
+## A single replication
+
+```{r}
+one <- run_one_simulation(
+  n = 100,
+  p = 20,
+  d = 2,
+  rho = 0.6,
+  sigma = 1,
+  model = "linear_quadratic",
+  sdr_method = "dr",
+  cov_method = "oas",
+  nslices = 6,
+  d_max = 5,
+  seed = 9202
+)
+
+one
+```
+
+Subspace distance is the Frobenius distance between the projection matrices:
+
+\[
+\left\|
+\widehat{\mathbf{P}}_{\mathbf{B}}
+-\mathbf{P}_{\mathbf{B}}
+\right\|_F.
+\]
+
+The measure is invariant to rotations and sign changes within an estimated
+subspace.
+
+## A small reproducible study
+
+```{r}
+small_study <- run_risdr_simulation(
+  R = 2,
+  rho_values = c(0.3, 0.8),
+  methods = c("sir", "dr"),
+  cov_methods = c("ridge", "oas"),
+  n = 80,
+  p = 15,
+  d = 2,
+  nslices = 5,
+  d_max = 4,
+  seed = 9203
+)
+
+summarise_simulation(small_study)
+```
+
+The thesis simulations use substantially more replications. Small values are
+used here only to keep package checks proportionate.
+
+## Legacy Simulation A fixture
+
+```{r}
+simulation_a <- utils::read.csv(system.file(
+  "extdata",
+  "simulation",
+  "simulation_A_final_covariance_DR_summary_tidy.csv",
+  package = "risdr"
+))
+
+aggregate(
+  cbind(
+    mean_subspace_distance,
+    mean_RMSE,
+    mean_condition_number,
+    mean_runtime_seconds
+  ) ~ cov_method,
+  data = simulation_a,
+  FUN = mean
+)
+```
+
+OAS and ridge produce the lowest average condition numbers in the supplied
+Simulation A record. Its external-prediction columns require a corrected rerun
+under a shared true basis.
+
+## Simulation B1 fixture
+
+```{r}
+ranking_b1 <- utils::read.csv(system.file(
+  "extdata",
+  "simulation",
+  "simulation_B1_overall_ranking.csv",
+  package = "risdr"
+))
+
+ranking_b1[order(ranking_b1$avg_subspace_distance), ]
+```
+
+DR has the best average subspace ranking in this supplied summary, although the
+margin over SIR is small and scenario-level results should also be examined.
+This legacy table is retained for traceability pending the targeted rerun.
+
+## Simulation B2 fixture
+
+```{r}
+ranking_b2 <- utils::read.csv(system.file(
+  "extdata",
+  "simulation",
+  "simulation_B2_overall_ranking.csv",
+  package = "risdr"
+))
+
+ranking_b2[
+  order(ranking_b2$avg_dimension_recovery_rate, decreasing = TRUE),
+]
+```
+
+DR attains an average structural dimension recovery rate of approximately
+29.1 per cent in the supplied B2 ranking. Recovery remains difficult across
+the complete design, so the result should be interpreted comparatively rather
+than as evidence of uniformly accurate dimension identification. B2 uses one
+training sample per replication and is not affected by the train-test basis
+mismatch, but it should be regenerated alongside the corrected simulation
+package for a single auditable record.
+
+## Reproducibility requirements
+
+The repository includes `analysis/reproduce_simulations.R` and `config.yml`.
+The corrected workflow reuses each training basis in its corresponding test
+sample while preserving the original scenario order, test predictors, error
+draws, and seed rule. It writes outputs with a `_corrected_v0_3_0` suffix.
+From the repository root, run:
+
+```{sh, eval=FALSE}
+Rscript analysis/reproduce_simulations.R config.yml
+```
+
+The default configuration retains the original scenario grid and 200
+replications. A copied configuration with one replication can be used for a
+preflight smoke run.
+
+Each reported simulation should retain:
+
+- the full scenario grid;
+- the master seed and replication-specific seed rule;
+- successful and failed replications;
+- full replication-level outputs;
+- the aggregation script;
+- software and package versions;
+- runtime and numerical-conditioning diagnostics.
+
+## References
