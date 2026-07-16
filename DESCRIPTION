@@ -47,3 +47,5 @@ Suggests:
 Config/testthat/edition: 3
 Config/Needs/website: r-lib/pkgdown
 VignetteBuilder: knitr
+URL: https://github.com/ilovemaths/risdr
+BugReports: https://github.com/ilovemaths/risdr/issues
