@@ -6,3 +6,4 @@
 \description{
 Package imports
 }
+\keyword{internal}

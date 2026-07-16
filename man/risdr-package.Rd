@@ -26,6 +26,15 @@ responses. Binary, multiclass, and censored survival extensions remain
 outside the supported modelling interface.
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ilovemaths/risdr}
+  \item \url{https://ilovemaths.github.io/risdr/}
+  \item Report bugs at \url{https://github.com/ilovemaths/risdr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Kabir Olorede \email{kabirolorede@gmail.com}
 
