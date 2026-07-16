@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/ilovemaths/risdr/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/ilovemaths/risdr/blob/v0.3.0/inst/CITATION)
 
 Olorede K (2026). *risdr: Regularised and Information-Theoretic
 Sufficient Dimension Reduction*. R package version 0.3.0.
