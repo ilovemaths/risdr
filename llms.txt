@@ -1,0 +1,329 @@
+# risdr
+
+`risdr` provides a reproducible framework for comparative sufficient
+dimension reduction with covariance regularisation and
+information-theoretic structural dimension selection. The current
+modelling interface supports continuous responses.
+
+The package implements:
+
+- sliced inverse regression (SIR);
+- sliced average variance estimation (SAVE);
+- directional regression (DR);
+- principal Hessian directions (pHd);
+- sample, ridge, Oracle Approximating Shrinkage (OAS), Ledoit-Wolf (LW),
+  and Maximum Entropy Covariance (MEC) estimators;
+- AIC, BIC, CAIC, ICOMP, and CICOMP structural dimension criteria;
+- V-fold, repeated, and complexity-aware cross-validation;
+- prediction diagnostics, subspace recovery measures, simulation
+  utilities, and base R plotting methods.
+
+## Development status
+
+Version 0.3.0 is a development release prepared for repository-level
+review. It is not yet a CRAN release. The thesis results supplied with
+the research project remain the authoritative empirical record.
+
+## Installation
+
+Install the package from a local source directory with:
+
+``` r
+
+install.packages("path/to/risdr", repos = NULL, type = "source")
+```
+
+During repository development, use:
+
+``` r
+
+devtools::install("path/to/risdr")
+```
+
+## Minimal example
+
+``` r
+
+library(risdr)
+
+set.seed(2026)
+
+sim <- simulate_risdr_data(
+  n = 160,
+  p = 20,
+  d = 2,
+  rho = 0.6,
+  model = "linear_quadratic",
+  seed = 2026
+)
+
+fit <- fit_risdr(
+  X = sim$X,
+  y = sim$y,
+  sdr_method = "dr",
+  cov_method = "oas",
+  nslices = 6,
+  d_max = 6,
+  selector = "cicomp"
+)
+
+fit
+summary(fit)
+
+prediction <- predict(fit, sim$X[1:10, , drop = FALSE])
+evaluate_prediction(sim$y[1:10], prediction, d = fit$d)
+```
+
+Component-specific arguments are separated explicitly:
+
+``` r
+
+fit_ridge <- fit_risdr(
+  X = sim$X,
+  y = sim$y,
+  sdr_method = "sir",
+  cov_method = "ridge",
+  d = 2,
+  d_max = 4,
+  cov_args = list(lambda = 0.15),
+  stabilization_args = list(eps = 1e-7),
+  sdr_args = list(slice_type = "quantile")
+)
+```
+
+## Structural dimension assessment
+
+``` r
+
+cv <- select_dimension_cv(
+  X = sim$X,
+  y = sim$y,
+  sdr_method = "dr",
+  cov_method = "oas",
+  d_max = 5,
+  v = 5,
+  seed = 2026
+)
+
+cv$selected_d
+cv$cv_table
+```
+
+See the package vignettes for the complete workflow, EPI case study,
+simulation design, covariance regularisation, and structural dimension
+selection.
+
+## Scope and reproducibility
+
+All stochastic examples expose seeds. Training-set centring and scaling
+are stored in fitted objects and reused for prediction. The package
+records failed resampling fits rather than silently discarding them.
+
+The supplied processed EPI training and test matrices are included under
+`inst/extdata/epi`, together with selected summary outputs from the
+completed thesis. The original single-file EPI corpus is not
+redistributed. Simulation fixtures are legacy records and must not be
+treated as newly validated v0.3.0 results.
+
+The corrected Simulation A, B1, and B2 workflow is configured in
+`config.yml` and can be run from the repository root with:
+
+``` sh
+Rscript analysis/reproduce_simulations.R config.yml
+```
+
+Corrected files receive a `_corrected_v0_3_0` suffix, so the workflow
+cannot overwrite the supplied legacy results.
+
+## Licence
+
+`risdr` is released under GPL version 3 or later.
+
+# Package index
+
+## Package overview
+
+- [`risdr`](https://ilovemaths.github.io/risdr/reference/risdr-package.md)
+  [`risdr-package`](https://ilovemaths.github.io/risdr/reference/risdr-package.md)
+  : risdr: Regularised and Information-Theoretic Sufficient Dimension
+  Reduction
+
+## Model fitting and methods
+
+- [`fit_risdr()`](https://ilovemaths.github.io/risdr/reference/fit_risdr.md)
+  : Fit regularised and information-theoretic SDR model
+- [`compute_dr()`](https://ilovemaths.github.io/risdr/reference/compute_dr.md)
+  : Compute Directional Regression
+- [`compute_information_criteria()`](https://ilovemaths.github.io/risdr/reference/compute_information_criteria.md)
+  : Compute model selection criteria
+- [`compute_phd()`](https://ilovemaths.github.io/risdr/reference/compute_phd.md)
+  : Compute Principal Hessian Directions
+- [`compute_save()`](https://ilovemaths.github.io/risdr/reference/compute_save.md)
+  : Compute Sliced Average Variance Estimation
+- [`compute_scores()`](https://ilovemaths.github.io/risdr/reference/compute_scores.md)
+  : Compute SDR scores for new data
+- [`compute_sdr()`](https://ilovemaths.github.io/risdr/reference/compute_sdr.md)
+  : General SDR kernel dispatcher
+- [`compute_sir()`](https://ilovemaths.github.io/risdr/reference/compute_sir.md)
+  : Compute Sliced Inverse Regression
+- [`extract_loadings()`](https://ilovemaths.github.io/risdr/reference/extract_loadings.md)
+  : Extract SDR loadings
+- [`predict(`*`<risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/predict.risdr.md)
+  : Predict method for risdr objects
+- [`predict_downstream_lm()`](https://ilovemaths.github.io/risdr/reference/predict_downstream_lm.md)
+  : Predict from downstream SDR regression model
+- [`prediction_correlation()`](https://ilovemaths.github.io/risdr/reference/prediction_correlation.md)
+  : Prediction correlation
+- [`summary(`*`<risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/summary.risdr.md)
+  : Summarise risdr object
+- [`print(`*`<risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr.md)
+  : Print risdr object
+- [`print(`*`<risdr_realdata>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr_realdata.md)
+  : Print real-data RISDR workflow
+- [`print(`*`<summary.risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/print.summary.risdr.md)
+  : Print summary of risdr object
+
+## Covariance estimation and stabilisation
+
+- [`cov_complexity_C1()`](https://ilovemaths.github.io/risdr/reference/cov_complexity_C1.md)
+  : Covariance complexity C1
+- [`cov_complexity_C1F()`](https://ilovemaths.github.io/risdr/reference/cov_complexity_C1F.md)
+  : Scale-invariant covariance complexity C1F
+- [`cov_condition_number()`](https://ilovemaths.github.io/risdr/reference/cov_condition_number.md)
+  : Covariance condition number
+- [`cov_diagnostics()`](https://ilovemaths.github.io/risdr/reference/cov_diagnostics.md)
+  : Covariance eigenvalue summary
+- [`cov_effective_rank()`](https://ilovemaths.github.io/risdr/reference/cov_effective_rank.md)
+  : Effective covariance rank
+- [`cov_lw()`](https://ilovemaths.github.io/risdr/reference/cov_lw.md) :
+  Ledoit-Wolf type covariance estimator
+- [`cov_mec()`](https://ilovemaths.github.io/risdr/reference/cov_mec.md)
+  : Maximum Entropy Covariance estimator
+- [`cov_oas()`](https://ilovemaths.github.io/risdr/reference/cov_oas.md)
+  : Oracle Approximating Shrinkage covariance estimator
+- [`cov_ridge()`](https://ilovemaths.github.io/risdr/reference/cov_ridge.md)
+  : Ridge-type covariance estimator
+- [`cov_sample()`](https://ilovemaths.github.io/risdr/reference/cov_sample.md)
+  : Sample covariance matrix
+- [`estimate_cov()`](https://ilovemaths.github.io/risdr/reference/estimate_cov.md)
+  : General covariance estimator dispatcher
+- [`stabilize_cov()`](https://ilovemaths.github.io/risdr/reference/stabilize_cov.md)
+  : General covariance stabilisation dispatcher
+- [`stabilize_eigenfloor()`](https://ilovemaths.github.io/risdr/reference/stabilize_eigenfloor.md)
+  : Eigenvalue floor stabilisation
+- [`stabilize_nearest_pd()`](https://ilovemaths.github.io/risdr/reference/stabilize_nearest_pd.md)
+  : Nearest positive definite stabilisation
+- [`stabilize_ridge()`](https://ilovemaths.github.io/risdr/reference/stabilize_ridge.md)
+  : Ridge stabilisation of covariance matrix
+
+## Structural dimension selection
+
+- [`select_dimension()`](https://ilovemaths.github.io/risdr/reference/select_dimension.md)
+  : Select structural dimension
+- [`choose_dimension()`](https://ilovemaths.github.io/risdr/reference/choose_dimension.md)
+  : Choose dimension from criteria table
+- [`criterion_weights()`](https://ilovemaths.github.io/risdr/reference/criterion_weights.md)
+  : Information criterion weights
+- [`select_dimension_cv()`](https://ilovemaths.github.io/risdr/reference/select_dimension_cv.md)
+  : Cross-validation dimension selection for SDR
+- [`select_dimension_cv_icomp()`](https://ilovemaths.github.io/risdr/reference/select_dimension_cv_icomp.md)
+  : Complexity-aware cross-validation for structural dimension selection
+- [`select_dimension_ladle()`](https://ilovemaths.github.io/risdr/reference/select_dimension_ladle.md)
+  : Ladle-type structural dimension diagnostic
+- [`make_cv_folds()`](https://ilovemaths.github.io/risdr/reference/make_cv_folds.md)
+  : Create cross-validation folds
+- [`plot_cv_dimension()`](https://ilovemaths.github.io/risdr/reference/plot_cv_dimension.md)
+  : Plot cross-validation dimension selection result
+- [`plot_dimension_selection()`](https://ilovemaths.github.io/risdr/reference/plot_dimension_selection.md)
+  : Plot dimension selection criteria
+- [`plot_ladle()`](https://ilovemaths.github.io/risdr/reference/plot_ladle.md)
+  : Plot ladle dimension diagnostic
+- [`plot_loadings()`](https://ilovemaths.github.io/risdr/reference/plot_loadings.md)
+  : Plot SDR loadings
+- [`plot_prediction()`](https://ilovemaths.github.io/risdr/reference/plot_prediction.md)
+  : Prediction plot
+- [`plot_residuals()`](https://ilovemaths.github.io/risdr/reference/plot_residuals.md)
+  : Residual plot
+- [`plot_scree()`](https://ilovemaths.github.io/risdr/reference/plot_scree.md)
+  : Scree plot of SDR eigenvalues
+- [`plot_sufficient()`](https://ilovemaths.github.io/risdr/reference/plot_sufficient.md)
+  : Sufficient summary plot
+- [`plot_sufficient2d()`](https://ilovemaths.github.io/risdr/reference/plot_sufficient2d.md)
+  : Two-direction sufficient summary plot
+
+## Prediction and assessment
+
+- [`fit_downstream_lm()`](https://ilovemaths.github.io/risdr/reference/fit_downstream_lm.md)
+  : Fit downstream regression model on SDR scores
+- [`predict_downstream_lm()`](https://ilovemaths.github.io/risdr/reference/predict_downstream_lm.md)
+  : Predict from downstream SDR regression model
+- [`evaluate_prediction()`](https://ilovemaths.github.io/risdr/reference/evaluate_prediction.md)
+  : Evaluate predictions
+- [`evaluate_prediction_cv()`](https://ilovemaths.github.io/risdr/reference/evaluate_prediction_cv.md)
+  : Repeated cross-validation for predictive assessment
+- [`rmse()`](https://ilovemaths.github.io/risdr/reference/rmse.md) :
+  Root mean squared error
+- [`mae()`](https://ilovemaths.github.io/risdr/reference/mae.md) : Mean
+  absolute error
+- [`mape()`](https://ilovemaths.github.io/risdr/reference/mape.md) :
+  Mean absolute percentage error
+- [`r_squared()`](https://ilovemaths.github.io/risdr/reference/r_squared.md)
+  : Coefficient of determination
+- [`adjusted_r_squared()`](https://ilovemaths.github.io/risdr/reference/adjusted_r_squared.md)
+  : Adjusted coefficient of determination
+- [`prediction_correlation()`](https://ilovemaths.github.io/risdr/reference/prediction_correlation.md)
+  : Prediction correlation
+
+## Slicing and simulation
+
+- [`make_slices()`](https://ilovemaths.github.io/risdr/reference/make_slices.md)
+  : Create response slices
+- [`slice_covariances()`](https://ilovemaths.github.io/risdr/reference/slice_covariances.md)
+  : Compute slice covariance matrices
+- [`slice_means()`](https://ilovemaths.github.io/risdr/reference/slice_means.md)
+  : Compute slice means
+- [`slice_proportions()`](https://ilovemaths.github.io/risdr/reference/slice_proportions.md)
+  : Compute slice proportions
+- [`slice_summary()`](https://ilovemaths.github.io/risdr/reference/slice_summary.md)
+  : Summarise response slices
+- [`simulate_risdr_data()`](https://ilovemaths.github.io/risdr/reference/simulate_risdr_data.md)
+  : Simulate SDR data
+- [`run_one_simulation()`](https://ilovemaths.github.io/risdr/reference/run_one_simulation.md)
+  : Run one SDR simulation replication
+- [`run_risdr_simulation()`](https://ilovemaths.github.io/risdr/reference/run_risdr_simulation.md)
+  : Run SDR simulation study
+- [`summarise_simulation()`](https://ilovemaths.github.io/risdr/reference/summarise_simulation.md)
+  : Summarise simulation results
+- [`ar1_covariance()`](https://ilovemaths.github.io/risdr/reference/ar1_covariance.md)
+  : AR(1) covariance matrix
+- [`projection_matrix()`](https://ilovemaths.github.io/risdr/reference/projection_matrix.md)
+  : Projection matrix
+- [`subspace_distance()`](https://ilovemaths.github.io/risdr/reference/subspace_distance.md)
+  : Subspace distance
+
+## Real-data helpers
+
+- [`filter_low_variance()`](https://ilovemaths.github.io/risdr/reference/filter_low_variance.md)
+  : Filter low-variance predictors
+- [`prepare_survival_response()`](https://ilovemaths.github.io/risdr/reference/prepare_survival_response.md)
+  : Prepare survival response
+- [`fit_risdr_realdata()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_realdata.md)
+  : Fit RISDR to real high-dimensional data
+
+# Articles
+
+### Core workflow
+
+- [Getting Started with
+  risdr](https://ilovemaths.github.io/risdr/articles/getting-started.md):
+- [Environmental Performance Index Case
+  Study](https://ilovemaths.github.io/risdr/articles/epi-case-study.md):
+
+### Methods
+
+- [Covariance
+  Regularisation](https://ilovemaths.github.io/risdr/articles/covariance-regularisation.md):
+- [Structural Dimension
+  Selection](https://ilovemaths.github.io/risdr/articles/structural-dimension-selection.md):
+- [Simulation
+  Study](https://ilovemaths.github.io/risdr/articles/simulation-study.md):
