@@ -21,9 +21,11 @@ The package implements:
 
 ## Development status
 
-Version 0.3.0 is a development release prepared for repository-level review.
-It is not yet a CRAN release. The thesis results supplied with the research
-project remain the authoritative empirical record.
+## Development status
+
+Version 0.3.0 is the first public development release of `risdr` and is 
+permanently archived on Zenodo. Development continues under version 0.3.0.9000. 
+The package has not yet been submitted to CRAN.
 
 ## Installation
 
