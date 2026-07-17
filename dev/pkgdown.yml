@@ -1,0 +1,13 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1.9000
+pkgdown_sha: 179cfaee3d4e17eaa9e7d7c700b1269dc62e4d46
+articles:
+  covariance-regularisation: covariance-regularisation.html
+  epi-case-study: epi-case-study.html
+  getting-started: getting-started.html
+  simulation-study: simulation-study.html
+  structural-dimension-selection: structural-dimension-selection.html
+last_built: 2026-07-17T18:16Z
+urls:
+  reference: https://ilovemaths.github.io/risdr/reference
+  article: https://ilovemaths.github.io/risdr/articles
