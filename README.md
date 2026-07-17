@@ -1,4 +1,5 @@
 # risdr
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21418002.svg)](https://doi.org/10.5281/zenodo.21418002)
 
 `risdr` provides a reproducible framework for comparative sufficient
 dimension reduction with covariance regularisation and information-theoretic

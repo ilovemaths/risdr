@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction"
+version: 0.3.0
+doi: 10.5281/zenodo.21418002
+date-released: 2026-07-16
+authors:
+  - family-names: "Olorede"
+    given-names: "Kabir Opeyemi"
+    email: "kabirolorede@gmail.com"
+repository-code: "https://github.com/ilovemaths/risdr"
+url: "https://ilovemaths.github.io/risdr/"
+license: GPL-3.0-or-later

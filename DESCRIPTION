@@ -1,6 +1,6 @@
 Package: risdr
 Title: Regularised and Information-Theoretic Sufficient Dimension Reduction
-Version: 0.3.0
+Version: 0.3.0.9000
 Authors@R: 
     person("Kabir", "Olorede", email = "kabirolorede@gmail.com", role = c("aut", "cre"))
 Description: Implements covariance-stabilised sufficient dimension reduction

@@ -33,3 +33,13 @@ bibentry(
     "https://arxiv.org/abs/1909.13017"
   )
 )
+
+bibentry(
+    bibtype = "Manual",
+    title = "risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction",
+    author = person("Kabir Opeyemi", "Olorede"),
+    year = "2026",
+    note = "R package version 0.3.0",
+    doi = "10.5281/zenodo.21418002",
+    url = "https://doi.org/10.5281/zenodo.21418002"
+)
