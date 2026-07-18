@@ -81,10 +81,6 @@
 <div class="section level2">
 <h2 id="development-status">Development status<a class="anchor" aria-label="anchor" href="#development-status"></a>
 </h2>
-</div>
-<div class="section level2">
-<h2 id="development-status-1">Development status<a class="anchor" aria-label="anchor" href="#development-status-1"></a>
-</h2>
 <p>Version 0.3.0 is the first public development release of <code>risdr</code> and is permanently archived on Zenodo. Development continues under version 0.3.0.9000. The package has not yet been submitted to CRAN.</p>
 </div>
 <div class="section level2">
@@ -96,11 +92,14 @@
 <p>During repository development, use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"path/to/risdr"</span><span class="op">)</span></span></code></pre></div>
+<p>Install the current development version directly from GitHub with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"ilovemaths/risdr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="minimal-example">Minimal example<a class="anchor" aria-label="anchor" href="#minimal-example"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ilovemaths/risdr" class="external-link">risdr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2026</span><span class="op">)</span></span>
@@ -130,7 +129,7 @@
 <span><span class="va">prediction</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, <span class="va">sim</span><span class="op">$</span><span class="va">X</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/evaluate_prediction.html">evaluate_prediction</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="va">prediction</span>, d <span class="op">=</span> <span class="va">fit</span><span class="op">$</span><span class="va">d</span><span class="op">)</span></span></code></pre></div>
 <p>Component-specific arguments are separated explicitly:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_ridge</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fit_risdr.html">fit_risdr</a></span><span class="op">(</span></span>
 <span>  X <span class="op">=</span> <span class="va">sim</span><span class="op">$</span><span class="va">X</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">sim</span><span class="op">$</span><span class="va">y</span>,</span>
@@ -146,7 +145,7 @@
 <div class="section level2">
 <h2 id="structural-dimension-assessment">Structural dimension assessment<a class="anchor" aria-label="anchor" href="#structural-dimension-assessment"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_dimension_cv.html">select_dimension_cv</a></span><span class="op">(</span></span>
 <span>  X <span class="op">=</span> <span class="va">sim</span><span class="op">$</span><span class="va">X</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">sim</span><span class="op">$</span><span class="va">y</span>,</span>
@@ -167,7 +166,7 @@
 <p>All stochastic examples expose seeds. Training-set centring and scaling are stored in fitted objects and reused for prediction. The package records failed resampling fits rather than silently discarding them.</p>
 <p>The supplied processed EPI training and test matrices are included under <code>inst/extdata/epi</code>, together with selected summary outputs from the completed thesis. The original single-file EPI corpus is not redistributed. Simulation fixtures are legacy records and must not be treated as newly validated v0.3.0 results.</p>
 <p>The corrected Simulation A, B1, and B2 workflow is configured in <code>config.yml</code> and can be run from the repository root with:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> analysis/reproduce_simulations.R config.yml</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">Rscript</span> analysis/reproduce_simulations.R config.yml</span></code></pre></div>
 <p>Corrected files receive a <code>_corrected_v0_3_0</code> suffix, so the workflow cannot overwrite the supplied legacy results.</p>
 </div>
 <div class="section level2">
