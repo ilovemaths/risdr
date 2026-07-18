@@ -31,20 +31,14 @@ Imports:
     MASS,
     Matrix
 Suggests:
-    covr,
     dplyr,
-    ggplot2,
-    here,
     knitr,
-    pkgdown,
-    purrr,
     readr,
     rmarkdown,
     testthat (>= 3.0.0),
-    tidyr,
-    VIM,
-    yaml
+    VIM
 Config/testthat/edition: 3
+Config/Needs/coverage: covr, xml2
 Config/Needs/website: r-lib/pkgdown
 VignetteBuilder: knitr
 URL: https://github.com/ilovemaths/risdr, https://ilovemaths.github.io/risdr/

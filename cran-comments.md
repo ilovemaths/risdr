@@ -1,11 +1,18 @@
-## Development release status
+## Test environments
 
-This v0.3.0 archive is a pre-submission development release. It has not yet
-been submitted to CRAN.
+- Local Windows 11 x64, R 4.6.0
+- GitHub Actions, macOS, R release
+- GitHub Actions, Windows, R release
+- GitHub Actions, Ubuntu, R devel
+- GitHub Actions, Ubuntu, R release
+- GitHub Actions, Ubuntu, R oldrel-1
 
-Before submission:
+## R CMD check results
 
-- run `devtools::document()` with the declared roxygen2 version;
-- run multi-platform checks on R devel, release, and oldrel;
-- confirm 0 errors, 0 warnings, and 0 notes under `R CMD check --as-cran`;
-- review all URLs and add the final repository and issue-tracker fields.
+There were 0 errors, 0 warnings, and 0 notes.
+
+## Initial submission
+
+This is the first submission of `risdr` to CRAN.
+
+The package has no downstream dependencies.

@@ -21,8 +21,6 @@ The package implements:
 
 ## Development status
 
-## Development status
-
 Version 0.3.0 is the first public development release of `risdr` and is 
 permanently archived on Zenodo. Development continues under version 0.3.0.9000. 
 The package has not yet been submitted to CRAN.
@@ -39,6 +37,12 @@ During repository development, use:
 
 ```r
 devtools::install("path/to/risdr")
+```
+
+Install the current development version directly from GitHub with:
+
+```r
+pak::pak("ilovemaths/risdr")
 ```
 
 ## Minimal example

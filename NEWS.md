@@ -1,3 +1,16 @@
+# risdr (development version)
+
+## CRAN hardening
+
+- Added executable examples for the principal simulation, covariance,
+  sufficient dimension reduction, prediction, slicing, structural dimension,
+  and subspace-assessment workflows.
+- Excluded the repository-level `CITATION.cff` file from source-package builds
+  while retaining `inst/CITATION` for the installed R package.
+- Added the Zenodo DOI for the archived version 0.3.0 release.
+- Began dependency, metadata, URL, spelling, and citation review for the first
+  CRAN submission.
+
 # risdr 0.3.0
 
 ## Package interface
