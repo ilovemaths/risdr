@@ -70,6 +70,18 @@
     <p>Matrix of slice means with rows corresponding to slices.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span>, <span class="st">"wt"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">slices</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_slices.html">make_slices</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, nslices <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">slice_means</span><span class="op">(</span><span class="va">X</span>, <span class="va">slices</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              disp        hp       wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> slice_1 370.35000 225.62500 4.276750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> slice_2 282.31111 163.88889 3.568333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> slice_3 151.61250 112.37500 2.774375</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> slice_4  95.22857  73.57143 2.061143</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

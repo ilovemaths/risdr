@@ -18,3 +18,12 @@ cov_oas(X)
 ## Value
 
 A covariance matrix.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_oas(X)
+attr(Sigma, "shrinkage")
+#> [1] 0.07486667
+```

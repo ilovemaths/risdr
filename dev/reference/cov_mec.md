@@ -68,3 +68,14 @@ convex shrinkage.
 
 For censored survival responses, the function accepts `delta` and
 applies a survival-aware response construction before slicing.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_mec(X, y = mtcars$mpg, nslices = 4)
+attr(Sigma, "alpha")
+#> [1] 0.95
+attr(Sigma, "entropy_slice")
+#> [1] 1
+```

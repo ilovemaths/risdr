@@ -26,3 +26,13 @@ make_slices(y, nslices = 6, type = c("quantile", "equal_width"))
 ## Value
 
 Integer vector of slice memberships.
+
+## Examples
+
+``` r
+slices <- make_slices(mtcars$mpg, nslices = 4)
+table(slices)
+#> slices
+#> 1 2 3 4 
+#> 8 9 8 7 
+```

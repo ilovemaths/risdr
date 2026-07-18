@@ -21,3 +21,11 @@ cov_condition_number(Sigma, eps = 1e-12)
 ## Value
 
 Numeric condition number.
+
+## Examples
+
+``` r
+Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+cov_condition_number(Sigma)
+#> [1] 94175.83
+```

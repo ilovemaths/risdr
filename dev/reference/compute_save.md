@@ -55,3 +55,12 @@ compute_save(
 
 A list containing SAVE kernel, eigenvalues, directions, scores, and
 slices.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_save(X, y = mtcars$mpg, nslices = 4)
+head(fit$eigenvalues)
+#> [1] 0.9789691 0.8509684 0.5671544
+```
