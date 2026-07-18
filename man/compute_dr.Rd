@@ -59,3 +59,8 @@ A_{hk} =
 (\mu_h - \mu_k)^\top
 }
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_dr(X, y = mtcars$mpg, nslices = 4)
+head(fit$eigenvalues)
+}

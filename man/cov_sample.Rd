@@ -15,3 +15,7 @@ A covariance matrix.
 \description{
 Computes the usual unbiased sample covariance matrix.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+cov_sample(X)
+}

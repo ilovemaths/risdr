@@ -19,3 +19,7 @@ Computes a convex shrinkage covariance estimator of the form
 \deqn{\Sigma_{\lambda} = (1 - \lambda)S + \lambda T,}
 where \eqn{S} is the sample covariance matrix and \eqn{T} is a scaled identity target.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+cov_ridge(X, lambda = 0.2)
+}

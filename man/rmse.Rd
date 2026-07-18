@@ -17,3 +17,6 @@ Numeric RMSE.
 \description{
 Root mean squared error
 }
+\examples{
+rmse(c(2, 4, 6, 8), c(2.2, 3.8, 5.7, 8.1))
+}

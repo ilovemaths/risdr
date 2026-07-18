@@ -126,6 +126,10 @@ decompose_kernel <- function(M, sort_by_abs = FALSE) {
 #' @param eps Eigenvalue floor.
 #'
 #' @return A list containing SIR kernel, eigenvalues, directions, scores, and slices.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' fit <- compute_sir(X, y = mtcars$mpg, nslices = 4)
+#' head(fit$eigenvalues)
 #' @export
 compute_sir <- function(
     X,
@@ -204,6 +208,10 @@ compute_sir <- function(
 #' @param eps Eigenvalue floor.
 #'
 #' @return A list containing SAVE kernel, eigenvalues, directions, scores, and slices.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' fit <- compute_save(X, y = mtcars$mpg, nslices = 4)
+#' head(fit$eigenvalues)
 #' @export
 compute_save <- function(
     X,
@@ -315,6 +323,10 @@ compute_save <- function(
 #' @param eps Eigenvalue floor.
 #'
 #' @return A list containing DR kernel, eigenvalues, directions, scores, and slices.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' fit <- compute_dr(X, y = mtcars$mpg, nslices = 4)
+#' head(fit$eigenvalues)
 #' @export
 compute_dr <- function(
     X,
@@ -437,6 +449,10 @@ compute_dr <- function(
 #' @param eps Eigenvalue floor.
 #'
 #' @return A list containing pHd kernel, eigenvalues, directions, scores.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' fit <- compute_phd(X, y = mtcars$mpg)
+#' head(fit$eigenvalues)
 #' @export
 compute_phd <- function(
     X,
@@ -494,6 +510,17 @@ compute_phd <- function(
 #' @param ... Additional arguments passed to internal methods.
 #'
 #' @return SDR fit components.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' Sigma <- cov_oas(X)
+#' fit <- compute_sdr(
+#'   X,
+#'   y = mtcars$mpg,
+#'   method = "sir",
+#'   Sigma = Sigma,
+#'   nslices = 4
+#' )
+#' dim(fit$scores)
 #' @export
 compute_sdr <- function(
     X,

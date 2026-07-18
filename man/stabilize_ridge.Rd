@@ -17,3 +17,7 @@ A symmetric positive definite covariance matrix.
 \description{
 Stabilises a covariance matrix by adding a positive multiple of the identity matrix.
 }
+\examples{
+Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+eigen(stabilize_ridge(Sigma))$values
+}

@@ -20,3 +20,8 @@ Selected structural dimension.
 \description{
 Choose dimension from criteria table
 }
+\examples{
+scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
+choose_dimension(dimension_table, selector = "bic")
+}

@@ -17,3 +17,8 @@ Numeric subspace distance.
 \description{
 Computes Frobenius distance between projection matrices.
 }
+\examples{
+B <- matrix(c(1, 0, 0, 0, 1, 0), nrow = 3)
+transformed <- B \%*\% diag(c(2, 3))
+subspace_distance(transformed, B)
+}

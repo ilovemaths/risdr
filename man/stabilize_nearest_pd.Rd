@@ -18,3 +18,7 @@ A symmetric positive definite covariance matrix.
 Stabilises a covariance matrix by projecting it to the nearest positive
 definite matrix using Matrix::nearPD().
 }
+\examples{
+Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+eigen(stabilize_nearest_pd(Sigma))$values
+}

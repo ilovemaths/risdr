@@ -28,6 +28,25 @@
 #'   three explicit argument lists.
 #'
 #' @return An object of class "risdr".
+#' @examples
+#' simulated <- simulate_risdr_data(
+#'   n = 60,
+#'   p = 6,
+#'   d = 2,
+#'   seed = 2026
+#' )
+#'
+#' fit <- fit_risdr(
+#'   X = simulated$X,
+#'   y = simulated$y,
+#'   sdr_method = "sir",
+#'   cov_method = "oas",
+#'   nslices = 4,
+#'   d = 1,
+#'   d_max = 3
+#' )
+#'
+#' fit
 #' @export
 fit_risdr <- function(
     X,
@@ -327,6 +346,25 @@ print.summary.risdr <- function(x, ...) {
 #' @param ... Additional arguments passed to internal methods.
 #'
 #' @return Numeric vector of predictions.
+#' @examples
+#' simulated <- simulate_risdr_data(
+#'   n = 60,
+#'   p = 6,
+#'   d = 2,
+#'   seed = 2026
+#' )
+#'
+#' fit <- fit_risdr(
+#'   X = simulated$X,
+#'   y = simulated$y,
+#'   sdr_method = "sir",
+#'   cov_method = "oas",
+#'   nslices = 4,
+#'   d = 1,
+#'   d_max = 3
+#' )
+#'
+#' predict(fit, newX = simulated$X[1:5, , drop = FALSE])
 #' @export
 predict.risdr <- function(object, newX, d = NULL, ...) {
 

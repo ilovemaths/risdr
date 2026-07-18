@@ -19,3 +19,10 @@ Numeric adjusted R-squared.
 \description{
 Adjusted coefficient of determination
 }
+\examples{
+adjusted_r_squared(
+  c(2, 4, 6, 8, 10),
+  c(2.2, 3.8, 5.7, 8.1, 9.8),
+  d = 1
+)
+}

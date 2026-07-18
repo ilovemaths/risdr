@@ -64,3 +64,23 @@ An object of class "risdr".
 Fits sufficient dimension reduction models with optional covariance
 regularisation and information-theoretic structural dimension selection.
 }
+\examples{
+simulated <- simulate_risdr_data(
+  n = 60,
+  p = 6,
+  d = 2,
+  seed = 2026
+)
+
+fit <- fit_risdr(
+  X = simulated$X,
+  y = simulated$y,
+  sdr_method = "sir",
+  cov_method = "oas",
+  nslices = 4,
+  d = 1,
+  d_max = 3
+)
+
+fit
+}

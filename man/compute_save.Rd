@@ -38,3 +38,8 @@ A list containing SAVE kernel, eigenvalues, directions, scores, and slices.
 \description{
 Compute Sliced Average Variance Estimation
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_save(X, y = mtcars$mpg, nslices = 4)
+head(fit$eigenvalues)
+}

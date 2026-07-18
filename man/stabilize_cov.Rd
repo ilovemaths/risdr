@@ -29,3 +29,7 @@ A stabilised covariance matrix.
 \description{
 Stabilises a covariance matrix using one of several available methods.
 }
+\examples{
+Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+stabilize_cov(Sigma, method = "eigenfloor")
+}

@@ -26,6 +26,18 @@
 #' @return A list containing the simulated predictors, response, true basis,
 #' latent sufficient predictors, population covariance matrix, signal, error,
 #' and simulation settings.
+#' @examples
+#' simulated <- simulate_risdr_data(
+#'   n = 60,
+#'   p = 6,
+#'   d = 2,
+#'   rho = 0.4,
+#'   seed = 2026
+#' )
+#'
+#' dim(simulated$X)
+#' head(simulated$y)
+#' crossprod(simulated$beta)
 #' @export
 simulate_risdr_data <- function(
     n = 200,
@@ -225,6 +237,8 @@ make_true_beta <- function(
 #' @param rho Correlation parameter.
 #'
 #' @return Covariance matrix.
+#' @examples
+#' ar1_covariance(p = 4, rho = 0.5)
 #' @export
 ar1_covariance <- function(p, rho) {
 
@@ -312,6 +326,9 @@ generate_signal <- function(
 #' @param B Basis matrix.
 #'
 #' @return Projection matrix.
+#' @examples
+#' B <- matrix(c(1, 0, 0, 0, 1, 0), nrow = 3)
+#' projection_matrix(B)
 #' @export
 projection_matrix <- function(B) {
 
@@ -342,6 +359,10 @@ projection_matrix <- function(B) {
 #' @param B True basis matrix.
 #'
 #' @return Numeric subspace distance.
+#' @examples
+#' B <- matrix(c(1, 0, 0, 0, 1, 0), nrow = 3)
+#' transformed <- B %*% diag(c(2, 3))
+#' subspace_distance(transformed, B)
 #' @export
 subspace_distance <- function(B_hat, B) {
 

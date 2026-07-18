@@ -18,3 +18,7 @@ A symmetric positive definite covariance matrix.
 Stabilises a symmetric covariance matrix by replacing eigenvalues smaller than
 a positive threshold with that threshold.
 }
+\examples{
+Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+eigen(stabilize_eigenfloor(Sigma))$values
+}

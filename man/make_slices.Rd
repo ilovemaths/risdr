@@ -20,3 +20,7 @@ Integer vector of slice memberships.
 Constructs response slices for inverse regression-based sufficient
 dimension reduction methods.
 }
+\examples{
+slices <- make_slices(mtcars$mpg, nslices = 4)
+table(slices)
+}

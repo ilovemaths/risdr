@@ -38,3 +38,14 @@ Dispatches to the requested covariance estimator. For MEC, the function
 supports continuous, categorical, and censored survival responses by passing
 \code{response_type} and \code{delta} to \code{cov_mec()}.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+
+estimate_cov(X, method = "oas")
+estimate_cov(
+  X,
+  y = mtcars$mpg,
+  method = "mec",
+  nslices = 4
+)
+}

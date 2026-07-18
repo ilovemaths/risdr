@@ -32,3 +32,8 @@ A list containing SIR kernel, eigenvalues, directions, scores, and slices.
 \description{
 Compute Sliced Inverse Regression
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_sir(X, y = mtcars$mpg, nslices = 4)
+head(fit$eigenvalues)
+}

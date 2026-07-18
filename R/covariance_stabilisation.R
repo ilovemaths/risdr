@@ -12,6 +12,9 @@
 #' @param eps Positive eigenvalue floor.
 #'
 #' @return A symmetric positive definite covariance matrix.
+#' @examples
+#' Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+#' eigen(stabilize_eigenfloor(Sigma))$values
 #' @export
 stabilize_eigenfloor <- function(Sigma, eps = 1e-6) {
 
@@ -41,6 +44,9 @@ stabilize_eigenfloor <- function(Sigma, eps = 1e-6) {
 #' @param lambda Ridge stabilisation parameter.
 #'
 #' @return A symmetric positive definite covariance matrix.
+#' @examples
+#' Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+#' eigen(stabilize_ridge(Sigma))$values
 #' @export
 stabilize_ridge <- function(Sigma, lambda = 1e-4) {
 
@@ -69,6 +75,9 @@ stabilize_ridge <- function(Sigma, lambda = 1e-4) {
 #' @param keep_diag Logical. If TRUE, keeps original diagonal where possible.
 #'
 #' @return A symmetric positive definite covariance matrix.
+#' @examples
+#' Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+#' eigen(stabilize_nearest_pd(Sigma))$values
 #' @export
 stabilize_nearest_pd <- function(Sigma, keep_diag = TRUE) {
 
@@ -106,6 +115,9 @@ stabilize_nearest_pd <- function(Sigma, keep_diag = TRUE) {
 #' @param keep_diag Logical. Used by nearest positive definite method.
 #'
 #' @return A stabilised covariance matrix.
+#' @examples
+#' Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+#' stabilize_cov(Sigma, method = "eigenfloor")
 #' @export
 stabilize_cov <- function(
     Sigma,
@@ -180,6 +192,9 @@ check_cov_matrix <- function(Sigma) {
 #' @param eps Small positive value used to avoid division by zero.
 #'
 #' @return Numeric condition number.
+#' @examples
+#' Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+#' cov_condition_number(Sigma)
 #' @export
 cov_condition_number <- function(Sigma, eps = 1e-12) {
 
@@ -204,6 +219,9 @@ cov_condition_number <- function(Sigma, eps = 1e-12) {
 #' @param tol Positive threshold.
 #'
 #' @return Effective rank.
+#' @examples
+#' Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+#' cov_effective_rank(Sigma)
 #' @export
 cov_effective_rank <- function(Sigma, tol = 1e-6) {
 
@@ -227,6 +245,9 @@ cov_effective_rank <- function(Sigma, tol = 1e-6) {
 #' @param tol Threshold for effective rank.
 #'
 #' @return A list of covariance diagnostics.
+#' @examples
+#' Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+#' cov_diagnostics(Sigma)
 #' @export
 cov_diagnostics <- function(Sigma, tol = 1e-6) {
 

@@ -50,3 +50,9 @@ and combines it with the pooled covariance matrix through convex shrinkage.
 For censored survival responses, the function accepts \code{delta} and applies
 a survival-aware response construction before slicing.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_mec(X, y = mtcars$mpg, nslices = 4)
+attr(Sigma, "alpha")
+attr(Sigma, "entropy_slice")
+}

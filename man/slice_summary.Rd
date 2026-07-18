@@ -17,3 +17,7 @@ A data frame summarising slices.
 \description{
 Produces a summary table of slice frequencies and response ranges.
 }
+\examples{
+slices <- make_slices(mtcars$mpg, nslices = 4)
+slice_summary(mtcars$mpg, slices)
+}

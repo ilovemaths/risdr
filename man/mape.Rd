@@ -17,3 +17,6 @@ Numeric MAPE.
 \description{
 Mean absolute percentage error
 }
+\examples{
+mape(c(2, 4, 6, 8), c(2.2, 3.8, 5.7, 8.1))
+}

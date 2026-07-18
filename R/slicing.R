@@ -13,6 +13,9 @@
 #' @param type Slicing strategy. Currently supports "quantile" and "equal_width".
 #'
 #' @return Integer vector of slice memberships.
+#' @examples
+#' slices <- make_slices(mtcars$mpg, nslices = 4)
+#' table(slices)
 #' @export
 make_slices <- function(
     y,
@@ -91,6 +94,9 @@ make_slices <- function(
 #' @param slices Integer slice memberships.
 #'
 #' @return A data frame summarising slices.
+#' @examples
+#' slices <- make_slices(mtcars$mpg, nslices = 4)
+#' slice_summary(mtcars$mpg, slices)
 #' @export
 slice_summary <- function(y, slices) {
 
@@ -128,6 +134,10 @@ slice_summary <- function(y, slices) {
 #' @param slices Integer slice memberships.
 #'
 #' @return Matrix of slice means with rows corresponding to slices.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' slices <- make_slices(mtcars$mpg, nslices = 4)
+#' slice_means(X, slices)
 #' @export
 slice_means <- function(X, slices) {
 
@@ -162,6 +172,11 @@ slice_means <- function(X, slices) {
 #' @param eps Eigenvalue floor.
 #'
 #' @return A list of covariance matrices.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' slices <- make_slices(mtcars$mpg, nslices = 4)
+#' covariances <- slice_covariances(X, slices)
+#' names(covariances)
 #' @export
 slice_covariances <- function(
     X,
@@ -212,6 +227,9 @@ slice_covariances <- function(
 #' @param slices Integer slice memberships.
 #'
 #' @return Numeric vector of slice proportions.
+#' @examples
+#' slices <- make_slices(mtcars$mpg, nslices = 4)
+#' slice_proportions(slices)
 #' @export
 slice_proportions <- function(slices) {
 

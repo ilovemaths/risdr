@@ -17,3 +17,8 @@ Matrix of SDR scores.
 \description{
 Projects new predictor observations onto estimated SDR directions.
 }
+\examples{
+X <- as.matrix(mtcars[1:5, c("wt", "hp", "disp")])
+directions <- diag(3)[, 1:2, drop = FALSE]
+compute_scores(X, directions)
+}

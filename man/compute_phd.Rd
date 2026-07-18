@@ -21,3 +21,8 @@ A list containing pHd kernel, eigenvalues, directions, scores.
 \description{
 Compute Principal Hessian Directions
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_phd(X, y = mtcars$mpg)
+head(fit$eigenvalues)
+}

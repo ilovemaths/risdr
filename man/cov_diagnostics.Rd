@@ -17,3 +17,7 @@ A list of covariance diagnostics.
 \description{
 Provides diagnostic eigenvalue summaries for a covariance matrix.
 }
+\examples{
+Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+cov_diagnostics(Sigma)
+}

@@ -15,3 +15,8 @@ A covariance matrix.
 \description{
 Computes a practical Ledoit-Wolf type shrinkage estimator toward a scaled identity target.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_lw(X)
+attr(Sigma, "shrinkage")
+}

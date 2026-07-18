@@ -19,3 +19,7 @@ A fitted lm object.
 \description{
 Fits a linear regression model using the first d SDR scores.
 }
+\examples{
+scores <- as.matrix(mtcars[, c("wt", "hp")])
+fit_downstream_lm(scores, y = mtcars$mpg, d = 2)
+}

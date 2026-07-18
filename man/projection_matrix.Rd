@@ -15,3 +15,7 @@ Projection matrix.
 \description{
 Projection matrix
 }
+\examples{
+B <- matrix(c(1, 0, 0, 0, 1, 0), nrow = 3)
+projection_matrix(B)
+}

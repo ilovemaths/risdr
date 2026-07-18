@@ -30,3 +30,12 @@ A data frame of criteria by candidate dimension.
 Fits linear models on SDR scores for candidate dimensions and computes
 information criteria.
 }
+\examples{
+scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+dimension_table <- select_dimension(
+  scores = scores,
+  y = mtcars$mpg,
+  d_max = 3
+)
+dimension_table
+}

@@ -65,6 +65,9 @@ cov_complexity_C1F <- function(Sigma, eps = 1e-10) {
 #' @param eps Eigenvalue floor.
 #'
 #' @return Named numeric vector of criteria.
+#' @examples
+#' fit <- stats::lm(mpg ~ wt + hp, data = mtcars)
+#' compute_information_criteria(fit)
 #' @export
 compute_information_criteria <- function(
     fit,
@@ -120,6 +123,14 @@ compute_information_criteria <- function(
 #' @param eps Eigenvalue floor.
 #'
 #' @return A data frame of criteria by candidate dimension.
+#' @examples
+#' scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+#' dimension_table <- select_dimension(
+#'   scores = scores,
+#'   y = mtcars$mpg,
+#'   d_max = 3
+#' )
+#' dimension_table
 #' @export
 select_dimension <- function(
     scores,
@@ -183,6 +194,10 @@ select_dimension <- function(
 #' @param selector Criterion used for selection.
 #'
 #' @return Selected structural dimension.
+#' @examples
+#' scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+#' dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
+#' choose_dimension(dimension_table, selector = "bic")
 #' @export
 choose_dimension <- function(
     d_table,
@@ -209,6 +224,10 @@ choose_dimension <- function(
 #' @param criterion Criterion column name.
 #'
 #' @return Data frame with criterion differences and weights.
+#' @examples
+#' scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+#' dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
+#' criterion_weights(dimension_table, criterion = "BIC")
 #' @export
 criterion_weights <- function(
     d_table,

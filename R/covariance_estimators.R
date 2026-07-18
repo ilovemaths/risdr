@@ -10,6 +10,9 @@
 #' @param X Numeric matrix or data frame.
 #'
 #' @return A covariance matrix.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' cov_sample(X)
 #' @export
 cov_sample <- function(X) {
 
@@ -29,6 +32,9 @@ cov_sample <- function(X) {
 #' @param lambda Shrinkage intensity in \eqn{[0,1]}.
 #'
 #' @return A covariance matrix.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' cov_ridge(X, lambda = 0.2)
 #' @export
 cov_ridge <- function(X, lambda = 0.10) {
 
@@ -60,6 +66,10 @@ cov_ridge <- function(X, lambda = 0.10) {
 #' @param X Numeric matrix or data frame.
 #'
 #' @return A covariance matrix.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' Sigma <- cov_oas(X)
+#' attr(Sigma, "shrinkage")
 #' @export
 cov_oas <- function(X) {
 
@@ -105,6 +115,10 @@ cov_oas <- function(X) {
 #' @param X Numeric matrix or data frame.
 #'
 #' @return A covariance matrix.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' Sigma <- cov_lw(X)
+#' attr(Sigma, "shrinkage")
 #' @export
 cov_lw <- function(X) {
 
@@ -168,6 +182,11 @@ cov_lw <- function(X) {
 #'
 #' @return A covariance matrix with attributes containing the shrinkage weight
 #'   and entropy diagnostics.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#' Sigma <- cov_mec(X, y = mtcars$mpg, nslices = 4)
+#' attr(Sigma, "alpha")
+#' attr(Sigma, "entropy_slice")
 #' @export
 cov_mec <- function(
     X,
@@ -353,6 +372,16 @@ cov_mec <- function(
 #' @param ... Additional arguments passed to internal covariance estimators.
 #'
 #' @return A covariance matrix.
+#' @examples
+#' X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+#'
+#' estimate_cov(X, method = "oas")
+#' estimate_cov(
+#'   X,
+#'   y = mtcars$mpg,
+#'   method = "mec",
+#'   nslices = 4
+#' )
 #' @export
 estimate_cov <- function(
     X,

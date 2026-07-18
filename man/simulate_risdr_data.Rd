@@ -50,3 +50,16 @@ autoregressive covariance structure. The function returns the true
 orthonormal central subspace basis, which allows simulation studies to
 evaluate both prediction accuracy and subspace recovery.
 }
+\examples{
+simulated <- simulate_risdr_data(
+  n = 60,
+  p = 6,
+  d = 2,
+  rho = 0.4,
+  seed = 2026
+)
+
+dim(simulated$X)
+head(simulated$y)
+crossprod(simulated$beta)
+}

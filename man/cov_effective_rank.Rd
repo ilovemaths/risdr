@@ -17,3 +17,7 @@ Effective rank.
 \description{
 Computes the number of eigenvalues exceeding a threshold.
 }
+\examples{
+Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+cov_effective_rank(Sigma)
+}

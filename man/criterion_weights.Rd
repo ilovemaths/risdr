@@ -20,3 +20,8 @@ Data frame with criterion differences and weights.
 \description{
 Computes relative weights from any information criterion column.
 }
+\examples{
+scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
+criterion_weights(dimension_table, criterion = "BIC")
+}

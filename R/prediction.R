@@ -13,6 +13,9 @@
 #' @param d Structural dimension.
 #'
 #' @return A fitted lm object.
+#' @examples
+#' scores <- as.matrix(mtcars[, c("wt", "hp")])
+#' fit_downstream_lm(scores, y = mtcars$mpg, d = 2)
 #' @export
 fit_downstream_lm <- function(scores, y, d) {
 
@@ -44,6 +47,10 @@ fit_downstream_lm <- function(scores, y, d) {
 #' @param directions Matrix of SDR directions.
 #'
 #' @return Matrix of SDR scores.
+#' @examples
+#' X <- as.matrix(mtcars[1:5, c("wt", "hp", "disp")])
+#' directions <- diag(3)[, 1:2, drop = FALSE]
+#' compute_scores(X, directions)
 #' @export
 compute_scores <- function(newX, directions) {
 
@@ -112,6 +119,8 @@ predict_downstream_lm <- function(fit_lm, scores_new, d) {
 #' @param y_pred Predicted response values.
 #'
 #' @return Numeric RMSE.
+#' @examples
+#' rmse(c(2, 4, 6, 8), c(2.2, 3.8, 5.7, 8.1))
 #' @export
 rmse <- function(y_true, y_pred) {
 
@@ -127,6 +136,8 @@ rmse <- function(y_true, y_pred) {
 #' @param y_pred Predicted response values.
 #'
 #' @return Numeric MAE.
+#' @examples
+#' mae(c(2, 4, 6, 8), c(2.2, 3.8, 5.7, 8.1))
 #' @export
 mae <- function(y_true, y_pred) {
 
@@ -142,6 +153,8 @@ mae <- function(y_true, y_pred) {
 #' @param y_pred Predicted response values.
 #'
 #' @return Numeric MAPE.
+#' @examples
+#' mape(c(2, 4, 6, 8), c(2.2, 3.8, 5.7, 8.1))
 #' @export
 mape <- function(y_true, y_pred) {
 
@@ -165,6 +178,8 @@ mape <- function(y_true, y_pred) {
 #' @param y_pred Predicted response values.
 #'
 #' @return Numeric R-squared.
+#' @examples
+#' r_squared(c(2, 4, 6, 8), c(2.2, 3.8, 5.7, 8.1))
 #' @export
 r_squared <- function(y_true, y_pred) {
 
@@ -189,6 +204,12 @@ r_squared <- function(y_true, y_pred) {
 #' @param d Number of predictors in the downstream model.
 #'
 #' @return Numeric adjusted R-squared.
+#' @examples
+#' adjusted_r_squared(
+#'   c(2, 4, 6, 8, 10),
+#'   c(2.2, 3.8, 5.7, 8.1, 9.8),
+#'   d = 1
+#' )
 #' @export
 adjusted_r_squared <- function(y_true, y_pred, d) {
 
@@ -220,6 +241,11 @@ adjusted_r_squared <- function(y_true, y_pred, d) {
 #' @param y_pred Predicted response values.
 #'
 #' @return Pearson correlation.
+#' @examples
+#' prediction_correlation(
+#'   c(2, 4, 6, 8),
+#'   c(2.2, 3.8, 5.7, 8.1)
+#' )
 #' @export
 prediction_correlation <- function(y_true, y_pred) {
 
@@ -238,6 +264,12 @@ prediction_correlation <- function(y_true, y_pred) {
 #' @param d Optional number of reduced predictors.
 #'
 #' @return A data frame of prediction metrics.
+#' @examples
+#' evaluate_prediction(
+#'   y_true = c(2, 4, 6, 8, 10),
+#'   y_pred = c(2.2, 3.8, 5.7, 8.1, 9.8),
+#'   d = 1
+#' )
 #' @export
 evaluate_prediction <- function(y_true, y_pred, d = NULL) {
 

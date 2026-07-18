@@ -19,3 +19,7 @@ Named numeric vector of criteria.
 \description{
 Computes AIC, BIC, CAIC, ICOMP, and CICOMP for a fitted linear model.
 }
+\examples{
+fit <- stats::lm(mpg ~ wt + hp, data = mtcars)
+compute_information_criteria(fit)
+}

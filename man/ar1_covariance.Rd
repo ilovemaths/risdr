@@ -17,3 +17,6 @@ Covariance matrix.
 \description{
 AR(1) covariance matrix
 }
+\examples{
+ar1_covariance(p = 4, rho = 0.5)
+}

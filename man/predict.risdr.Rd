@@ -21,3 +21,23 @@ Numeric vector of predictions.
 \description{
 Predict method for risdr objects
 }
+\examples{
+simulated <- simulate_risdr_data(
+  n = 60,
+  p = 6,
+  d = 2,
+  seed = 2026
+)
+
+fit <- fit_risdr(
+  X = simulated$X,
+  y = simulated$y,
+  sdr_method = "sir",
+  cov_method = "oas",
+  nslices = 4,
+  d = 1,
+  d_max = 3
+)
+
+predict(fit, newX = simulated$X[1:5, , drop = FALSE])
+}

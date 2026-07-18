@@ -17,3 +17,7 @@ Numeric condition number.
 \description{
 Computes the spectral condition number of a covariance matrix.
 }
+\examples{
+Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+cov_condition_number(Sigma)
+}

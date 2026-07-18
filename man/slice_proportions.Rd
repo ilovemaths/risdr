@@ -15,3 +15,7 @@ Numeric vector of slice proportions.
 \description{
 Computes empirical slice probabilities.
 }
+\examples{
+slices <- make_slices(mtcars$mpg, nslices = 4)
+slice_proportions(slices)
+}

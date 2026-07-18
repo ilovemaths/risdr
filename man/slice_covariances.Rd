@@ -29,3 +29,9 @@ A list of covariance matrices.
 \description{
 Computes slice-specific covariance matrices.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+slices <- make_slices(mtcars$mpg, nslices = 4)
+covariances <- slice_covariances(X, slices)
+names(covariances)
+}

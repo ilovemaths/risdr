@@ -32,3 +32,15 @@ SDR fit components.
 \description{
 General SDR kernel dispatcher
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_oas(X)
+fit <- compute_sdr(
+  X,
+  y = mtcars$mpg,
+  method = "sir",
+  Sigma = Sigma,
+  nslices = 4
+)
+dim(fit$scores)
+}

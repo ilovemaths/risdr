@@ -16,3 +16,8 @@ A covariance matrix.
 Computes a simplified Oracle Approximating Shrinkage (OAS) covariance estimator
 for stabilising the sample covariance matrix.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_oas(X)
+attr(Sigma, "shrinkage")
+}

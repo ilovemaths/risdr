@@ -17,3 +17,8 @@ Matrix of slice means with rows corresponding to slices.
 \description{
 Computes slice-specific means of predictors.
 }
+\examples{
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+slices <- make_slices(mtcars$mpg, nslices = 4)
+slice_means(X, slices)
+}
