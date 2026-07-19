@@ -18,3 +18,12 @@ cov_lw(X)
 ## Value
 
 A covariance matrix.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_lw(X)
+attr(Sigma, "shrinkage")
+#> [1] 0.04804693
+```

@@ -1,56 +1,67 @@
-# risdr 0.3.0 release checklist
+# risdr 0.3.1 CRAN release-candidate checklist
 
-## Methodology and results
+## Completed hardening
 
 Confirm Maximum Entropy Covariance as the authoritative MEC definition.
 
-Complete the corrected A/B1/B2 simulation run.
-
-Review corrected summaries against the thesis interpretation.
-
 Add the supplied processed EPI inputs and integrity checks.
 
-## Native package checks
+Complete roxygen documentation and executable examples.
 
-Run `devtools::document()` and review generated changes.
+Pass all 177 testthat expectations.
 
-Run `devtools::test()` with no failures, errors, or unexpected warnings.
+Pass a local CRAN-style check with 0 errors, 0 warnings, and 0 notes.
 
-Run `R CMD build` from a clean checkout.
+Pass the GitHub Actions check matrix, coverage workflow, and pkgdown
+build.
 
-Run `R CMD check --as-cran` with 0 errors, 0 warnings, and 0 notes.
+Pass selected R-hub Windows, macOS, ATLAS, `nosuggests`, and `donttest`
+checks.
 
-Confirm the multi-platform GitHub Actions matrix is green.
+Pass URL and spelling audits.
 
-Review test coverage and address material untested branches.
+Confirm the GitHub repository, issue tracker, pkgdown site, licence, and
+citation records.
 
-Build and inspect every pkgdown article.
+## Final candidate validation
 
-## Repository release
+Apply the Pass 4 archive to a clean `main` branch.
 
-Add the final repository URL and issue tracker to `DESCRIPTION`.
+Run
+[`devtools::document()`](https://devtools.r-lib.org/reference/document.html)
+and review the generated changes.
 
-Confirm the private security-reporting contact.
+Run [`devtools::test()`](https://devtools.r-lib.org/reference/test.html)
+with no failures, errors, or unexpected warnings.
 
-Confirm repository visibility, licence, branch protection, and Pages
-settings.
+Run `pkgdown::build_site(preview = FALSE)` successfully.
 
-Tag `v0.3.0` from the validated commit.
+Run `devtools::check(args = "--as-cran")` with 0 errors, 0 warnings, and
+0 notes.
 
-Attach the source archive, release notes, change manifest, and
-checksums.
+Confirm `urlchecker::url_check(path = ".")` reports that all URLs are
+correct.
 
-Archive the tagged release on Zenodo only after the public release is
-final.
+Confirm `spelling::spell_check_package()` reports no spelling errors.
 
-## CRAN preparation
+Commit and push the validated 0.3.1 candidate.
 
-Update `cran-comments.md` with the actual check environments and
-results.
+Confirm the final GitHub Actions workflows are green.
 
-Run reverse-dependency checks if downstream packages exist.
+Build and inspect the source tarball from the committed candidate.
 
-Review package title, description, URLs, spelling, examples, and
-references against current CRAN policy.
+Submit the source tarball and `cran-comments.md` through the CRAN web
+form.
 
-Submit only after all methodological and package check gates are closed.
+## After CRAN acceptance
+
+Tag the accepted commit as `v0.3.1`.
+
+Publish the GitHub v0.3.1 release with source archive, release notes,
+change manifest, and checksums.
+
+Allow Zenodo to archive v0.3.1 and record its version DOI.
+
+Update repository citation metadata for the newly archived version.
+
+Begin the next development version without altering the accepted tag.

@@ -1,5 +1,29 @@
 # Changelog
 
+## risdr 0.3.1
+
+### CRAN release candidate
+
+- Added executable examples for the principal simulation, covariance,
+  sufficient dimension reduction, prediction, slicing, structural
+  dimension, and subspace-assessment workflows.
+- Hardened dependency, metadata, URL, spelling, and citation records for
+  the first CRAN submission.
+- Declared both `knitr` and `rmarkdown` as vignette builders so that
+  vignettes rebuild correctly when suggested packages are not
+  pre-installed.
+- Added a package spelling dictionary and R-hub validation workflow.
+- Corrected structural-dimension examples to request an admissible
+  maximum dimension directly, avoiding expected dimension-reduction
+  warnings.
+- Excluded the repository-level `CITATION.cff` file from source-package
+  builds while retaining `inst/CITATION` for the installed R package.
+- Retained the Zenodo DOI as the permanent identifier for the archived
+  version 0.3.0 release and made the installed-package citation report
+  the installed package version.
+- Completed local, GitHub Actions, pkgdown, coverage, URL, spelling, and
+  selected R-hub checks successfully.
+
 ## risdr 0.3.0
 
 ### Package interface

@@ -25,3 +25,12 @@ compute_information_criteria(fit, complexity = c("C1", "C1F"), eps = 1e-10)
 ## Value
 
 Named numeric vector of criteria.
+
+## Examples
+
+``` r
+fit <- stats::lm(mpg ~ wt + hp, data = mtcars)
+compute_information_criteria(fit)
+#>      AIC      BIC     CAIC    ICOMP   CICOMP 
+#> 156.6523 162.5153 166.5153 161.0673 178.9303 
+```

@@ -53,3 +53,35 @@ estimate_cov(
 ## Value
 
 A covariance matrix.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+
+estimate_cov(X, method = "oas")
+#>             disp         hp        wt
+#> disp 14251.72868 6023.65641  96.50905
+#> hp    6023.65641 4698.05255  39.60648
+#> wt      96.50905   39.60648 485.88591
+#> attr(,"shrinkage")
+#> [1] 0.07486667
+estimate_cov(
+  X,
+  y = mtcars$mpg,
+  method = "mec",
+  nslices = 4
+)
+#>            [,1]        [,2]       [,3]
+#> [1,] 6453.60813  119.899005 65.6710881
+#> [2,]  119.89900 3094.797811 -3.3171616
+#> [3,]   65.67109   -3.317162  0.8010292
+#> attr(,"alpha")
+#> [1] 0.95
+#> attr(,"entropy_slice")
+#> [1] 1
+#> attr(,"slice_entropy")
+#> [1] 14.550077 13.234394 11.199660  9.706499
+#> attr(,"response_type")
+#> [1] "continuous"
+```

@@ -39,3 +39,13 @@ slice_covariances(
 ## Value
 
 A list of covariance matrices.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+slices <- make_slices(mtcars$mpg, nslices = 4)
+covariances <- slice_covariances(X, slices)
+names(covariances)
+#> [1] "slice_1" "slice_2" "slice_3" "slice_4"
+```

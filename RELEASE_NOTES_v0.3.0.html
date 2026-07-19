@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,14 +40,14 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>risdr 0.3.0 release notes</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.0/RELEASE_NOTES_v0.3.0.md" class="external-link"><code>RELEASE_NOTES_v0.3.0.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/RELEASE_NOTES_v0.3.0.md" class="external-link"><code>RELEASE_NOTES_v0.3.0.md</code></a></small>
     </div>
 
 <div id="risdr-030-release-notes" class="section level1">
 
 <div class="section level2">
 <h2 id="status">Status<a class="anchor" aria-label="anchor" href="#status"></a></h2>
-<p>This archive is a development release candidate for repository review. It is not yet a CRAN release and should not be tagged publicly until the release gates below are closed.</p>
+<p>Version 0.3.0 is the first public development release of <code>risdr</code>. It was published on GitHub and archived on Zenodo with DOI 10.5281/zenodo.21418002. It is not a CRAN release.</p>
 </div>
 <div class="section level2">
 <h2 id="package-changes">Package changes<a class="anchor" aria-label="anchor" href="#package-changes"></a></h2>
@@ -70,14 +70,12 @@
 </ul></div>
 <div class="section level2">
 <h2 id="validation-status">Validation status<a class="anchor" aria-label="anchor" href="#validation-status"></a></h2>
-<p>R source, test, analysis, vignette-chunk, DESCRIPTION, YAML, and Rd validation passed in the preparation environment. Semantic smoke tests passed under webR 4.6.0. The user completed documentation generation and an initial native test run. Its three failures were corrected in this archive. A second native <code>devtools::test()</code> run and <code>R CMD check --as-cran</code> remain mandatory before public release. See <code>VALIDATION.md</code> for the exact record.</p>
+<p>The release passed 177 testthat expectations, a local CRAN-style check with 0 errors, 0 warnings, and 0 notes, and the configured GitHub Actions checks. The repository URL, issue tracker, pkgdown site, release archive, and Zenodo record were published successfully.</p>
 </div>
 <div class="section level2">
-<h2 id="release-gates">Release gates<a class="anchor" aria-label="anchor" href="#release-gates"></a></h2>
-<ol style="list-style-type: decimal"><li>Complete and review the corrected A/B1/B2 simulation run.</li>
-<li>Run native local and multi-platform checks and record 0 errors, 0 warnings, and 0 notes.</li>
-<li>Add final repository and issue-tracker URLs.</li>
-</ol><p>Maximum Entropy Covariance is the confirmed, authoritative expansion of MEC.</p>
+<h2 id="post-release-work">Post-release work<a class="anchor" aria-label="anchor" href="#post-release-work"></a></h2>
+<p>CRAN hardening continues under version 0.3.1. Corrected simulation reruns remain separate reproducibility work and do not alter the historical thesis results bundled as provenance fixtures.</p>
+<p>Maximum Entropy Covariance is the confirmed, authoritative expansion of MEC.</p>
 </div>
 </div>
 

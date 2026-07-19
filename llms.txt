@@ -1,5 +1,7 @@
 # risdr
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21418002.svg)](https://doi.org/10.5281/zenodo.21418002)
+
 `risdr` provides a reproducible framework for comparative sufficient
 dimension reduction with covariance regularisation and
 information-theoretic structural dimension selection. The current
@@ -20,9 +22,9 @@ The package implements:
 
 ## Development status
 
-Version 0.3.0 is a development release prepared for repository-level
-review. It is not yet a CRAN release. The thesis results supplied with
-the research project remain the authoritative empirical record.
+Version 0.3.1 is the first CRAN release candidate for `risdr`. Version
+0.3.0 remains the first public development release and is permanently
+archived on Zenodo. Version 0.3.1 has not yet been submitted to CRAN.
 
 ## Installation
 
@@ -38,6 +40,13 @@ During repository development, use:
 ``` r
 
 devtools::install("path/to/risdr")
+```
+
+Install the current release candidate directly from GitHub with:
+
+``` r
+
+pak::pak("ilovemaths/risdr")
 ```
 
 ## Minimal example
@@ -123,7 +132,7 @@ The supplied processed EPI training and test matrices are included under
 `inst/extdata/epi`, together with selected summary outputs from the
 completed thesis. The original single-file EPI corpus is not
 redistributed. Simulation fixtures are legacy records and must not be
-treated as newly validated v0.3.0 results.
+treated as newly validated results.
 
 The corrected Simulation A, B1, and B2 workflow is configured in
 `config.yml` and can be run from the repository root with:

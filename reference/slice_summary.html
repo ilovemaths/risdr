@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Summarise response slices</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.0/R/slicing.R" class="external-link"><code>R/slicing.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/R/slicing.R" class="external-link"><code>R/slicing.R</code></a></small>
       <div class="d-none name"><code>slice_summary.Rd</code></div>
     </div>
 
@@ -70,6 +70,17 @@
     <p>A data frame summarising slices.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">slices</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_slices.html">make_slices</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, nslices <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">slice_summary</span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, <span class="va">slices</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   slice n proportion y_min y_max   y_mean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 8    0.25000  10.4  15.2 13.56250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 9    0.28125  15.5  19.2 17.55556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 8    0.25000  19.7  22.8 21.45000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 7    0.21875  24.4  33.9 29.25714</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

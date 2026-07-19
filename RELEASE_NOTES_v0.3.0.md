@@ -2,9 +2,9 @@
 
 ## Status
 
-This archive is a development release candidate for repository review.
-It is not yet a CRAN release and should not be tagged publicly until the
-release gates below are closed.
+Version 0.3.0 is the first public development release of `risdr`. It was
+published on GitHub and archived on Zenodo with DOI
+10.5281/zenodo.21418002. It is not a CRAN release.
 
 ## Package changes
 
@@ -42,20 +42,16 @@ release gates below are closed.
 
 ## Validation status
 
-R source, test, analysis, vignette-chunk, DESCRIPTION, YAML, and Rd
-validation passed in the preparation environment. Semantic smoke tests
-passed under webR 4.6.0. The user completed documentation generation and
-an initial native test run. Its three failures were corrected in this
-archive. A second native `devtools::test()` run and
-`R CMD check --as-cran` remain mandatory before public release. See
-`VALIDATION.md` for the exact record.
+The release passed 177 testthat expectations, a local CRAN-style check
+with 0 errors, 0 warnings, and 0 notes, and the configured GitHub
+Actions checks. The repository URL, issue tracker, pkgdown site, release
+archive, and Zenodo record were published successfully.
 
-## Release gates
+## Post-release work
 
-1.  Complete and review the corrected A/B1/B2 simulation run.
-2.  Run native local and multi-platform checks and record 0 errors, 0
-    warnings, and 0 notes.
-3.  Add final repository and issue-tracker URLs.
+CRAN hardening continues under version 0.3.1. Corrected simulation
+reruns remain separate reproducibility work and do not alter the
+historical thesis results bundled as provenance fixtures.
 
 Maximum Entropy Covariance is the confirmed, authoritative expansion of
 MEC.

@@ -29,3 +29,12 @@ compute_phd(X, y, Sigma = NULL, eps = 1e-08)
 ## Value
 
 A list containing pHd kernel, eigenvalues, directions, scores.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_phd(X, y = mtcars$mpg)
+head(fit$eigenvalues)
+#> [1] -3.654174 -1.229633  0.534509
+```

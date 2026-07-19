@@ -24,3 +24,12 @@ choose_dimension(
 ## Value
 
 Selected structural dimension.
+
+## Examples
+
+``` r
+scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
+dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 2)
+choose_dimension(dimension_table, selector = "bic")
+#> [1] 2
+```

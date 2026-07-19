@@ -45,3 +45,12 @@ compute_sir(
 
 A list containing SIR kernel, eigenvalues, directions, scores, and
 slices.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_sir(X, y = mtcars$mpg, nslices = 4)
+head(fit$eigenvalues)
+#> [1] 0.81199072 0.06994048 0.01104979
+```

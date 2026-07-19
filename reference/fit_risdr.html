@@ -9,7 +9,7 @@ regularisation and information-theoretic structural dimension selection."></head
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@ regularisation and information-theoretic structural dimension selection."></head
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Fit regularised and information-theoretic SDR model</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.0/R/fit_risdr.R" class="external-link"><code>R/fit_risdr.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/R/fit_risdr.R" class="external-link"><code>R/fit_risdr.R</code></a></small>
       <div class="d-none name"><code>fit_risdr.Rd</code></div>
     </div>
 
@@ -147,6 +147,39 @@ three explicit argument lists.</p></dd>
     <p>An object of class "risdr".</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">simulated</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulate_risdr_data.html">simulate_risdr_data</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n <span class="op">=</span> <span class="fl">60</span>,</span></span>
+<span class="r-in"><span>  p <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>  d <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  seed <span class="op">=</span> <span class="fl">2026</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fit_risdr</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  X <span class="op">=</span> <span class="va">simulated</span><span class="op">$</span><span class="va">X</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="va">simulated</span><span class="op">$</span><span class="va">y</span>,</span></span>
+<span class="r-in"><span>  sdr_method <span class="op">=</span> <span class="st">"sir"</span>,</span></span>
+<span class="r-in"><span>  cov_method <span class="op">=</span> <span class="st">"oas"</span>,</span></span>
+<span class="r-in"><span>  nslices <span class="op">=</span> <span class="fl">4</span>,</span></span>
+<span class="r-in"><span>  d <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  d_max <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">fit</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regularised and Information-Theoretic SDR fit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SDR method       : SIR </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Covariance       : OAS </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Stabilised       : TRUE </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Stabilisation    : eigenfloor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Selected d       : 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Selector         : CICOMP </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of slices : 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Observations     : 60 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Predictors       : 6 </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

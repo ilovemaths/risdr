@@ -68,3 +68,12 @@ where
 
 \$\$ A\_{hk} = \Sigma_h + \Sigma_k + (\mu_h - \mu_k) (\mu_h -
 \mu_k)^\top \$\$
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+fit <- compute_dr(X, y = mtcars$mpg, nslices = 4)
+head(fit$eigenvalues)
+#> [1] 4.067756 1.959709 1.590711
+```

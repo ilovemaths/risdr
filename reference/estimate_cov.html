@@ -11,7 +11,7 @@ response_type and delta to cov_mec()."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ response_type and delta to cov_mec()."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>General covariance estimator dispatcher</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.0/R/covariance_estimators.R" class="external-link"><code>R/covariance_estimators.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/R/covariance_estimators.R" class="external-link"><code>R/covariance_estimators.R</code></a></small>
       <div class="d-none name"><code>estimate_cov.Rd</code></div>
     </div>
 
@@ -105,6 +105,37 @@ or <code>"survival"</code>.</p></dd>
     <p>A covariance matrix.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span>, <span class="st">"wt"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">estimate_cov</span><span class="op">(</span><span class="va">X</span>, method <span class="op">=</span> <span class="st">"oas"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             disp         hp        wt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> disp 14251.72868 6023.65641  96.50905</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hp    6023.65641 4698.05255  39.60648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> wt      96.50905   39.60648 485.88591</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"shrinkage")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.07486667</span>
+<span class="r-in"><span><span class="fu">estimate_cov</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">X</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>,</span></span>
+<span class="r-in"><span>  method <span class="op">=</span> <span class="st">"mec"</span>,</span></span>
+<span class="r-in"><span>  nslices <span class="op">=</span> <span class="fl">4</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]        [,2]       [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 6453.60813  119.899005 65.6710881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  119.89900 3094.797811 -3.3171616</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]   65.67109   -3.317162  0.8010292</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"alpha")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"entropy_slice")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"slice_entropy")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 14.550077 13.234394 11.199660  9.706499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"response_type")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "continuous"</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

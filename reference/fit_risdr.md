@@ -96,3 +96,37 @@ fit_risdr(
 ## Value
 
 An object of class "risdr".
+
+## Examples
+
+``` r
+simulated <- simulate_risdr_data(
+  n = 60,
+  p = 6,
+  d = 2,
+  seed = 2026
+)
+
+fit <- fit_risdr(
+  X = simulated$X,
+  y = simulated$y,
+  sdr_method = "sir",
+  cov_method = "oas",
+  nslices = 4,
+  d = 1,
+  d_max = 3
+)
+
+fit
+#> Regularised and Information-Theoretic SDR fit
+#> --------------------------------------------------
+#> SDR method       : SIR 
+#> Covariance       : OAS 
+#> Stabilised       : TRUE 
+#> Stabilisation    : eigenfloor 
+#> Selected d       : 1 
+#> Selector         : CICOMP 
+#> Number of slices : 4 
+#> Observations     : 60 
+#> Predictors       : 6 
+```

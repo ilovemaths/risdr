@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Predict method for risdr objects</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.0/R/fit_risdr.R" class="external-link"><code>R/fit_risdr.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/R/fit_risdr.R" class="external-link"><code>R/fit_risdr.R</code></a></small>
       <div class="d-none name"><code>predict.risdr.Rd</code></div>
     </div>
 
@@ -79,6 +79,29 @@
     <p>Numeric vector of predictions.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">simulated</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulate_risdr_data.html">simulate_risdr_data</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n <span class="op">=</span> <span class="fl">60</span>,</span></span>
+<span class="r-in"><span>  p <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>  d <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  seed <span class="op">=</span> <span class="fl">2026</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="fit_risdr.html">fit_risdr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  X <span class="op">=</span> <span class="va">simulated</span><span class="op">$</span><span class="va">X</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="va">simulated</span><span class="op">$</span><span class="va">y</span>,</span></span>
+<span class="r-in"><span>  sdr_method <span class="op">=</span> <span class="st">"sir"</span>,</span></span>
+<span class="r-in"><span>  cov_method <span class="op">=</span> <span class="st">"oas"</span>,</span></span>
+<span class="r-in"><span>  nslices <span class="op">=</span> <span class="fl">4</span>,</span></span>
+<span class="r-in"><span>  d <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  d_max <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newX <span class="op">=</span> <span class="va">simulated</span><span class="op">$</span><span class="va">X</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.4537697 0.3564072 0.3778502 0.7143796 0.8060729</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

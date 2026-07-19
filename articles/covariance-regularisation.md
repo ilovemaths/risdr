@@ -179,7 +179,7 @@ The supplied Simulation A record favours OAS and ridge for conditioning.
 Its prediction columns require rerun because the original script
 regenerated the random true basis for the test sample. The table is
 retained here for provenance and must not be treated as a newly
-validated v0.3.0 result.
+validated result.
 
 ## Maximum Entropy Covariance
 

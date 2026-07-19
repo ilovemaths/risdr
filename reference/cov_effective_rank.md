@@ -21,3 +21,11 @@ cov_effective_rank(Sigma, tol = 1e-06)
 ## Value
 
 Effective rank.
+
+## Examples
+
+``` r
+Sigma <- cov(mtcars[, c("disp", "hp", "wt")])
+cov_effective_rank(Sigma)
+#> [1] 3
+```

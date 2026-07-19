@@ -44,3 +44,19 @@ compute_sdr(
 ## Value
 
 SDR fit components.
+
+## Examples
+
+``` r
+X <- as.matrix(mtcars[, c("disp", "hp", "wt")])
+Sigma <- cov_oas(X)
+fit <- compute_sdr(
+  X,
+  y = mtcars$mpg,
+  method = "sir",
+  Sigma = Sigma,
+  nslices = 4
+)
+dim(fit$scores)
+#> [1] 32  3
+```

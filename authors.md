@@ -7,27 +7,30 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/ilovemaths/risdr/blob/v0.3.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/ilovemaths/risdr/blob/main/inst/CITATION)
 
-Olorede K (2026). *risdr: Regularised and Information-Theoretic
-Sufficient Dimension Reduction*. R package version 0.3.0.
+Olorede, K. O. (2026). risdr: Regularised and Information-Theoretic
+Sufficient Dimension Reduction (R package version 0.3.1).
+https://github.com/ilovemaths/risdr
 
     @Manual{,
       title = {risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction},
-      author = {Kabir Olorede},
+      author = {Kabir Opeyemi Olorede},
       year = {2026},
-      note = {R package version 0.3.0},
+      note = {R package version 0.3.1},
+      url = {https://github.com/ilovemaths/risdr},
     }
 
-Olorede, K. O., and Yahya, W. B. (2019). "A New Covariance Estimator for
+Olorede, K. O., and Yahya, W. B. (2019). A New Covariance Estimator for
 Sufficient Dimension Reduction in High-Dimensional and Undersized Sample
-Problems." arXiv:1909.13017 \[stat.ME\].
-https://arxiv.org/abs/1909.13017
+Problems. arXiv:1909.13017 \[stat.ME\].
+https://doi.org/10.48550/arXiv.1909.13017
 
     @Misc{,
       title = {A New Covariance Estimator for Sufficient Dimension Reduction in High-Dimensional and Undersized Sample Problems},
       author = {Kabir Opeyemi Olorede and Waheed Babatunde Yahya},
       year = {2019},
       note = {arXiv:1909.13017 [stat.ME]},
+      doi = {10.48550/arXiv.1909.13017},
       url = {https://arxiv.org/abs/1909.13017},
     }

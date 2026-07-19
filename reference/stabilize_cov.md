@@ -39,3 +39,13 @@ stabilize_cov(
 ## Value
 
 A stabilised covariance matrix.
+
+## Examples
+
+``` r
+Sigma <- matrix(c(1, 1, 1, 1), nrow = 2)
+stabilize_cov(Sigma, method = "eigenfloor")
+#>           [,1]      [,2]
+#> [1,] 1.0000005 0.9999995
+#> [2,] 0.9999995 1.0000005
+```

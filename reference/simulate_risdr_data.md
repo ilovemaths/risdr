@@ -70,3 +70,24 @@ simulate_risdr_data(
 A list containing the simulated predictors, response, true basis, latent
 sufficient predictors, population covariance matrix, signal, error, and
 simulation settings.
+
+## Examples
+
+``` r
+simulated <- simulate_risdr_data(
+  n = 60,
+  p = 6,
+  d = 2,
+  rho = 0.4,
+  seed = 2026
+)
+
+dim(simulated$X)
+#> [1] 60  6
+head(simulated$y)
+#> [1]  0.6492720 -3.9456499 -1.6755412 -2.0225007  3.7572592  0.5424327
+crossprod(simulated$beta)
+#>       beta1 beta2
+#> beta1     1     0
+#> beta2     0     1
+```
