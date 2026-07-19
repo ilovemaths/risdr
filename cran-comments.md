@@ -18,8 +18,19 @@ There were 0 errors, 0 warnings, and 0 notes in the local CRAN-style check.
 The GitHub Actions matrix and the selected R-hub checks completed
 successfully.
 
-## Initial submission
+## Resubmission
 
-This is the first submission of `risdr` to CRAN.
+This is a resubmission of the first submission of `risdr` to CRAN.
+
+The pretest issue concerning `inst/CITATION` has been corrected.
+The file no longer calls `packageDescription()`, which requires the
+package to be installed. It now uses the `meta` object supplied by
+the standard R citation mechanism.
+
+The words identified by the incoming spell check are intentional:
+
+- Ledoit, Olorede, and Yahya are author surnames;
+- MEC denotes Maximum Entropy Covariance; and
+- `et al.` is a standard bibliographic abbreviation.
 
 The package has no downstream dependencies.
