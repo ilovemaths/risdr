@@ -139,11 +139,11 @@ evaluation objectives differ.</p>
 <span></span>
 <span><span class="va">one</span></span>
 <span><span class="co">#&gt;     n  p true_d selected_d rho sigma            model sdr_method cov_method</span></span>
-<span><span class="co">#&gt; 1 100 20      2          4 0.6     1 linear_quadratic         dr        oas</span></span>
-<span><span class="co">#&gt;   selector subspace_distance    RMSE      MAE     MAPE         R2 Adjusted_R2</span></span>
-<span><span class="co">#&gt; 1   cicomp          1.636901 2.12264 1.496609 339.7211 0.04941063 0.009385819</span></span>
+<span><span class="co">#&gt; 1 100 20      2          1 0.6     1 linear_quadratic         dr        oas</span></span>
+<span><span class="co">#&gt;   selector subspace_distance    RMSE      MAE    MAPE         R2 Adjusted_R2</span></span>
+<span><span class="co">#&gt; 1   cicomp          1.320158 2.18873 1.490271 314.531 0.04857807  0.03886969</span></span>
 <span><span class="co">#&gt;   Correlation</span></span>
-<span><span class="co">#&gt; 1   0.3081921</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   0.4162502</span></span></code></pre></div>
 <p>Subspace distance is the Frobenius distance between the projection
 matrices:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo stretchy="true" form="prefix">∥</mo><msub><mover><mi>𝐏</mi><mo accent="true">̂</mo></mover><mi>𝐁</mi></msub><mo>−</mo><msub><mi>𝐏</mi><mi>𝐁</mi></msub><mo stretchy="true" form="postfix">∥</mo></mrow><mi>F</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
@@ -174,23 +174,23 @@ estimated subspace.</p>
 <span></span>
 <span><span class="fu"><a href="../reference/summarise_simulation.html">summarise_simulation</a></span><span class="op">(</span><span class="va">small_study</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rho sdr_method cov_method subspace_distance     RMSE      MAE          R2</span></span>
-<span><span class="co">#&gt; 1 0.3         dr        oas          1.497544 1.999751 1.568484  0.10707876</span></span>
-<span><span class="co">#&gt; 2 0.8         dr        oas          1.604443 1.962117 1.371217 -0.04389550</span></span>
-<span><span class="co">#&gt; 3 0.3        sir        oas          1.584844 1.989832 1.492512  0.09150760</span></span>
-<span><span class="co">#&gt; 4 0.8        sir        oas          1.723671 2.154795 1.591799  0.04424048</span></span>
-<span><span class="co">#&gt; 5 0.3         dr      ridge          1.805062 2.156424 1.672917 -0.10393320</span></span>
-<span><span class="co">#&gt; 6 0.8         dr      ridge          1.629352 2.116198 1.591837  0.16768560</span></span>
-<span><span class="co">#&gt; 7 0.3        sir      ridge          1.578103 1.723998 1.329183  0.05391467</span></span>
-<span><span class="co">#&gt; 8 0.8        sir      ridge          1.605170 2.134675 1.448731 -0.02267343</span></span>
-<span><span class="co">#&gt;   Adjusted_R2 Correlation</span></span>
-<span><span class="co">#&gt; 1  0.09563105  0.33874075</span></span>
-<span><span class="co">#&gt; 2 -0.05727878  0.39308889</span></span>
-<span><span class="co">#&gt; 3  0.07389137  0.35729563</span></span>
-<span><span class="co">#&gt; 4  0.03198715  0.35573130</span></span>
-<span><span class="co">#&gt; 5 -0.13370648  0.09270968</span></span>
-<span><span class="co">#&gt; 6  0.15024652  0.42669004</span></span>
-<span><span class="co">#&gt; 7  0.04178537  0.43541348</span></span>
-<span><span class="co">#&gt; 8 -0.03578462  0.32394481</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3         dr        oas          1.525298 1.993248 1.530878  0.09422162</span></span>
+<span><span class="co">#&gt; 2 0.8         dr        oas          1.451363 1.888500 1.375991 -0.03539802</span></span>
+<span><span class="co">#&gt; 3 0.3        sir        oas          1.591776 1.945704 1.443395  0.10572643</span></span>
+<span><span class="co">#&gt; 4 0.8        sir        oas          1.790102 2.210610 1.578302 -0.01912106</span></span>
+<span><span class="co">#&gt; 5 0.3         dr      ridge          1.765966 2.158093 1.659933 -0.14241246</span></span>
+<span><span class="co">#&gt; 6 0.8         dr      ridge          1.538678 2.200191 1.639793  0.19368471</span></span>
+<span><span class="co">#&gt; 7 0.3        sir      ridge          1.680301 1.755262 1.372652  0.05101130</span></span>
+<span><span class="co">#&gt; 8 0.8        sir      ridge          1.701325 2.063218 1.474070  0.01778571</span></span>
+<span><span class="co">#&gt;     Adjusted_R2 Correlation</span></span>
+<span><span class="co">#&gt; 1  0.0576814062  0.35614342</span></span>
+<span><span class="co">#&gt; 2 -0.0486723583  0.38306151</span></span>
+<span><span class="co">#&gt; 3  0.0942613855  0.35977379</span></span>
+<span><span class="co">#&gt; 4 -0.0383973649  0.29618806</span></span>
+<span><span class="co">#&gt; 5 -0.1652264152  0.01675292</span></span>
+<span><span class="co">#&gt; 6  0.1768756718  0.47358402</span></span>
+<span><span class="co">#&gt; 7  0.0388447801  0.40795067</span></span>
+<span><span class="co">#&gt; 8 -0.0005688661  0.36378528</span></span></code></pre></div>
 <p>The thesis simulations use substantially more replications. Small
 values are used here only to keep package checks proportionate.</p>
 </div>
