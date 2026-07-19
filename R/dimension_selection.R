@@ -128,7 +128,7 @@ compute_information_criteria <- function(
 #' dimension_table <- select_dimension(
 #'   scores = scores,
 #'   y = mtcars$mpg,
-#'   d_max = 3
+#'   d_max = 2
 #' )
 #' dimension_table
 #' @export
@@ -196,7 +196,7 @@ select_dimension <- function(
 #' @return Selected structural dimension.
 #' @examples
 #' scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
-#' dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
+#' dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 2)
 #' choose_dimension(dimension_table, selector = "bic")
 #' @export
 choose_dimension <- function(
@@ -226,7 +226,7 @@ choose_dimension <- function(
 #' @return Data frame with criterion differences and weights.
 #' @examples
 #' scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
-#' dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
+#' dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 2)
 #' criterion_weights(dimension_table, criterion = "BIC")
 #' @export
 criterion_weights <- function(

@@ -1,3 +1,5 @@
+meta <- packageDescription("risdr")
+
 bibentry(
   bibtype = "Manual",
   title = "risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction",
@@ -6,14 +8,13 @@ bibentry(
     family = "Olorede"
   ),
   year = "2026",
-  note = "R package version 0.3.0",
-  doi = "10.5281/zenodo.21418002",
-  url = "https://doi.org/10.5281/zenodo.21418002",
+  note = paste("R package version", meta$Version),
+  url = "https://github.com/ilovemaths/risdr",
   textVersion = paste(
     "Olorede, K. O. (2026).",
     "risdr: Regularised and Information-Theoretic Sufficient",
-    "Dimension Reduction (R package version 0.3.0).",
-    "https://doi.org/10.5281/zenodo.21418002"
+    sprintf("Dimension Reduction (R package version %s).", meta$Version),
+    "https://github.com/ilovemaths/risdr"
   )
 )
 
@@ -43,5 +44,12 @@ bibentry(
     "in High-Dimensional and Undersized Sample Problems.",
     "arXiv:1909.13017 [stat.ME].",
     "https://doi.org/10.48550/arXiv.1909.13017"
+  )
+)
+
+citFooter(
+  paste(
+    "The first public development release, risdr 0.3.0, is archived at",
+    "https://doi.org/10.5281/zenodo.21418002."
   )
 )

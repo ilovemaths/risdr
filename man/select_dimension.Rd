@@ -35,7 +35,7 @@ scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
 dimension_table <- select_dimension(
   scores = scores,
   y = mtcars$mpg,
-  d_max = 3
+  d_max = 2
 )
 dimension_table
 }

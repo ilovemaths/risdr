@@ -158,9 +158,9 @@ change the estimated subspace.
 
 ## Current scope
 
-The verified modelling interface in version 0.3.0 is for continuous responses.
-The standalone MEC covariance helper accepts additional working response forms,
-but binary, multiclass, and censored survival modelling are not yet claimed as
-complete `risdr` workflows.
+The verified modelling interface is for continuous responses. The standalone
+MEC covariance helper accepts additional working response forms, but binary,
+multiclass, and censored survival modelling are not yet claimed as complete
+`risdr` workflows.
 
 ## References

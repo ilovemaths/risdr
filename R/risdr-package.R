@@ -12,9 +12,9 @@
 #' complementary structural-dimension diagnostics.
 #'
 #' @section Scope:
-#' Version 0.3.0 verifies the complete modelling workflow for continuous
-#' responses. Binary, multiclass, and censored survival extensions remain
-#' outside the supported modelling interface.
+#' The verified modelling workflow supports continuous responses. Binary,
+#' multiclass, and censored survival extensions remain outside the supported
+#' modelling interface.
 #'
 #' @docType package
 #' @name risdr-package

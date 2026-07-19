@@ -21,9 +21,9 @@ The package implements:
 
 ## Development status
 
-Version 0.3.0 is the first public development release of `risdr` and is 
-permanently archived on Zenodo. Development continues under version 0.3.0.9000. 
-The package has not yet been submitted to CRAN.
+Version 0.3.1 is the first CRAN release candidate for `risdr`. Version 0.3.0
+remains the first public development release and is permanently archived on
+Zenodo. Version 0.3.1 has not yet been submitted to CRAN.
 
 ## Installation
 
@@ -39,7 +39,7 @@ During repository development, use:
 devtools::install("path/to/risdr")
 ```
 
-Install the current development version directly from GitHub with:
+Install the current release candidate directly from GitHub with:
 
 ```r
 pak::pak("ilovemaths/risdr")
@@ -123,7 +123,7 @@ resampling fits rather than silently discarding them.
 The supplied processed EPI training and test matrices are included under
 `inst/extdata/epi`, together with selected summary outputs from the completed
 thesis. The original single-file EPI corpus is not redistributed. Simulation
-fixtures are legacy records and must not be treated as newly validated v0.3.0
+fixtures are legacy records and must not be treated as newly validated
 results.
 
 The corrected Simulation A, B1, and B2 workflow is configured in `config.yml`

@@ -1,5 +1,7 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it using the metadata below."
+message: >-
+  This metadata describes the archived risdr 0.3.0 release. Cite the installed
+  package version with citation("risdr").
 type: software
 title: "risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction"
 version: 0.3.0

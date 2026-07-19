@@ -20,7 +20,7 @@ imputation, 70 predictor indicators were retained alongside the EPI response.
 The `.old` columns formed the training data and the aligned `.new` columns
 formed the test data.
 
-Version 0.3.0 includes the supplied processed predictor and response matrices.
+The package includes the supplied processed predictor and response matrices.
 The paired predictor matrices contain the same 70 named indicators and no
 missing values. Selected supplied output tables are retained separately as
 provenance fixtures.
