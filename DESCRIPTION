@@ -40,6 +40,6 @@ Suggests:
 Config/testthat/edition: 3
 Config/Needs/coverage: covr, xml2
 Config/Needs/website: r-lib/pkgdown
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown
 URL: https://github.com/ilovemaths/risdr, https://ilovemaths.github.io/risdr/
 BugReports: https://github.com/ilovemaths/risdr/issues
