@@ -20,12 +20,16 @@ successfully.
 
 ## Resubmission
 
-This is a resubmission of the first submission of `risdr` to CRAN.
+This is a corrected resubmission of the first submission of `risdr` to CRAN.
 
-The pretest issue concerning `inst/CITATION` has been corrected.
-The file no longer calls `packageDescription()`, which requires the
-package to be installed. It now uses the `meta` object supplied by
-the standard R citation mechanism.
+The `inst/CITATION` file has been corrected for evaluation when the
+package is not installed. The original file called `packageDescription()`
+and subsequently retained two `meta$Version` expressions. These have now
+been replaced with `meta[["Version"]]`, which supports the named atomic
+metadata supplied during CRAN incoming checks.
+
+The corrected CITATION file has been tested directly with atomic metadata
+from DESCRIPTION and in a clean R session.
 
 The words identified by the incoming spell check are intentional:
 

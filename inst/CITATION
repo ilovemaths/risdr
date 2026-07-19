@@ -7,12 +7,12 @@ bibentry(
     family = "Olorede"
   ),
   year = "2026",
-  note = paste("R package version", meta$Version),
+  note = paste("R package version", meta[["Version"]]),
   url = "https://github.com/ilovemaths/risdr",
   textVersion = paste(
     "Olorede, K. O. (2026).",
     "risdr: Regularised and Information-Theoretic Sufficient",
-    sprintf("Dimension Reduction (R package version %s).", meta$Version),
+    sprintf("Dimension Reduction (R package version %s).", meta[["Version"]]),
     "https://github.com/ilovemaths/risdr"
   )
 )
