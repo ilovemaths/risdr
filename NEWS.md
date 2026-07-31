@@ -1,7 +1,14 @@
+# risdr 0.3.1.9000
+
+## Post-release development
+
+- Updated package, citation, installation, CRAN, and Zenodo metadata following the first CRAN release.
+
 # risdr 0.3.1
 
-## CRAN release candidate
+## First CRAN release
 
+- Published version 0.3.1 on CRAN on 28 July 2026 and archived the release on Zenodo.
 - Added executable examples for the principal simulation, covariance,
   sufficient dimension reduction, prediction, slicing, structural dimension,
   and subspace-assessment workflows.

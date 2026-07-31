@@ -7,13 +7,14 @@ bibentry(
     family = "Olorede"
   ),
   year = "2026",
+  doi = "10.32614/CRAN.package.risdr",
   note = paste("R package version", meta[["Version"]]),
-  url = "https://github.com/ilovemaths/risdr",
+  url = "https://CRAN.R-project.org/package=risdr",
   textVersion = paste(
     "Olorede, K. O. (2026).",
     "risdr: Regularised and Information-Theoretic Sufficient",
     sprintf("Dimension Reduction (R package version %s).", meta[["Version"]]),
-    "https://github.com/ilovemaths/risdr"
+    "https://doi.org/10.32614/CRAN.package.risdr"
   )
 )
 
@@ -49,6 +50,10 @@ bibentry(
 citFooter(
   paste(
     "The first public development release, risdr 0.3.0, is archived at",
-    "https://doi.org/10.5281/zenodo.21418002."
+    "https://doi.org/10.5281/zenodo.21418002.",
+    "The first CRAN release, risdr 0.3.1, is archived at",
+    "https://doi.org/10.5281/zenodo.21728851.",
+    "The Zenodo concept DOI for all versions is",
+    "https://doi.org/10.5281/zenodo.21728850."
   )
 )
