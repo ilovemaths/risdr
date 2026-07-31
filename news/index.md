@@ -2,6 +2,8 @@
 
 ## risdr 0.3.1
 
+CRAN release: 2026-07-28
+
 ### CRAN release candidate
 
 - Added executable examples for the principal simulation, covariance,

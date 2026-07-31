@@ -40,7 +40,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Validation record for risdr 0.3.1</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/VALIDATION.md" class="external-link"><code>VALIDATION.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.1/VALIDATION.md" class="external-link"><code>VALIDATION.md</code></a></small>
     </div>
 
 <div id="validation-record-for-risdr-031" class="section level1">
@@ -48,7 +48,7 @@
 <p>Date: 19 July 2026</p>
 <div class="section level2">
 <h2 id="completed-before-the-release-candidate-update">Completed before the release-candidate update<a class="anchor" aria-label="anchor" href="#completed-before-the-release-candidate-update"></a></h2>
-<ul><li>Generated package documentation successfully with <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code>.</li>
+<ul><li>Generated package documentation successfully with <code>devtools::document()</code>.</li>
 <li>Passed 177 testthat expectations with no failures, warnings, or skips.</li>
 <li>Passed a local Windows CRAN-style check with 0 errors, 0 warnings, and 0 notes.</li>
 <li>Passed GitHub Actions checks on macOS with R release, Windows with R release, and Ubuntu with R devel, R release, and R oldrel-1.</li>
@@ -70,11 +70,11 @@
 <h2 id="final-local-validation-completed">Final local validation completed<a class="anchor" aria-label="anchor" href="#final-local-validation-completed"></a></h2>
 <p>The Pass 4 changes affect documentation and release metadata rather than the statistical implementation. The following checks were rerun successfully on Windows 11 with R 4.6.0:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">document</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/test.html" class="external-link">test</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">build_site</a></span><span class="op">(</span>preview <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">check</a></span><span class="op">(</span>args <span class="op">=</span> <span class="st">"--as-cran"</span><span class="op">)</span></span>
-<span><span class="fu">urlchecker</span><span class="fu">::</span><span class="fu"><a href="https://urlchecker.r-lib.org/reference/url_check.html" class="external-link">url_check</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>args <span class="op">=</span> <span class="st">"--as-cran"</span><span class="op">)</span></span>
+<span><span class="fu">urlchecker</span><span class="fu">::</span><span class="fu">url_check</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
 <span><span class="fu">spelling</span><span class="fu">::</span><span class="fu">spell_check_package</span><span class="op">(</span></span>
 <span>  pkg <span class="op">=</span> <span class="st">"."</span>,</span>
 <span>  vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>

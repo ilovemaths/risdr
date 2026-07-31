@@ -5,7 +5,7 @@ Date: 19 July 2026
 ## Completed before the release-candidate update
 
 - Generated package documentation successfully with
-  [`devtools::document()`](https://devtools.r-lib.org/reference/document.html).
+  `devtools::document()`.
 - Passed 177 testthat expectations with no failures, warnings, or skips.
 - Passed a local Windows CRAN-style check with 0 errors, 0 warnings, and
   0 notes.

@@ -40,7 +40,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>risdr 0.3.1 CRAN release-candidate checklist</h1>
-      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/main/RELEASE_CHECKLIST.md" class="external-link"><code>RELEASE_CHECKLIST.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.1/RELEASE_CHECKLIST.md" class="external-link"><code>RELEASE_CHECKLIST.md</code></a></small>
     </div>
 
 <div id="risdr-031-cran-release-candidate-checklist" class="section level1">
@@ -60,8 +60,8 @@
 <div class="section level2">
 <h2 id="final-candidate-validation">Final candidate validation<a class="anchor" aria-label="anchor" href="#final-candidate-validation"></a></h2>
 <ul class="task-list"><li><label><input type="checkbox" checked>Apply the Pass 4 archive to a clean <code>main</code> branch.</label></li>
-<li><label><input type="checkbox" checked>Run <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code> and review the generated changes.</label></li>
-<li><label><input type="checkbox" checked>Run <code><a href="https://devtools.r-lib.org/reference/test.html" class="external-link">devtools::test()</a></code> with no failures, errors, or unexpected warnings.</label></li>
+<li><label><input type="checkbox" checked>Run <code>devtools::document()</code> and review the generated changes.</label></li>
+<li><label><input type="checkbox" checked>Run <code>devtools::test()</code> with no failures, errors, or unexpected warnings.</label></li>
 <li><label><input type="checkbox" checked>Run <code>pkgdown::build_site(preview = FALSE)</code> successfully.</label></li>
 <li><label><input type="checkbox" checked>Run <code>devtools::check(args = "--as-cran")</code> with 0 errors, 0 warnings, and 0 notes.</label></li>
 <li><label><input type="checkbox" checked>Confirm <code>urlchecker::url_check(path = ".")</code> reports that all URLs are correct.</label></li>

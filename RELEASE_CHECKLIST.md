@@ -27,12 +27,9 @@ citation records.
 
 Apply the Pass 4 archive to a clean `main` branch.
 
-Run
-[`devtools::document()`](https://devtools.r-lib.org/reference/document.html)
-and review the generated changes.
+Run `devtools::document()` and review the generated changes.
 
-Run [`devtools::test()`](https://devtools.r-lib.org/reference/test.html)
-with no failures, errors, or unexpected warnings.
+Run `devtools::test()` with no failures, errors, or unexpected warnings.
 
 Run `pkgdown::build_site(preview = FALSE)` successfully.
 
