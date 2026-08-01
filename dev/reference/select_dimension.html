@@ -9,7 +9,7 @@ information criteria."><meta name="robots" content="noindex"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,9 +97,8 @@ information criteria.</p>
 <span class="r-in"><span><span class="va">dimension_table</span> <span class="op">&lt;-</span> <span class="fu">select_dimension</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  scores <span class="op">=</span> <span class="va">scores</span>,</span></span>
 <span class="r-in"><span>  y <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>,</span></span>
-<span class="r-in"><span>  d_max <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>  d_max <span class="op">=</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`d_max` was reduced to 2 to respect predictor and residual-degrees-of-freedom limits.</span>
 <span class="r-in"><span><span class="va">dimension_table</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   d      AIC      BIC     CAIC    ICOMP   CICOMP</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 1 166.0294 170.4266 173.4266 163.7341 177.1313</span>

@@ -1,10 +1,12 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://ilovemaths.github.io/risdr/dev/CHANGE_MANIFEST.html</loc></url>
+<url><loc>https://ilovemaths.github.io/risdr/dev/CHANGE_MANIFEST_v0.3.1.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/CONTRIBUTING.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/MEC_METHOD_DECISION.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/RELEASE_CHECKLIST.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/RELEASE_NOTES_v0.3.0.html</loc></url>
+<url><loc>https://ilovemaths.github.io/risdr/dev/RELEASE_NOTES_v0.3.1.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/SECURITY.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/VALIDATION.html</loc></url>
 <url><loc>https://ilovemaths.github.io/risdr/dev/articles/covariance-regularisation.html</loc></url>

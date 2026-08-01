@@ -29,8 +29,7 @@ Data frame with criterion differences and weights.
 
 ``` r
 scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
-dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 3)
-#> Warning: `d_max` was reduced to 2 to respect predictor and residual-degrees-of-freedom limits.
+dimension_table <- select_dimension(scores, mtcars$mpg, d_max = 2)
 criterion_weights(dimension_table, criterion = "BIC")
 #>   d criterion    value    delta     weight
 #> 1 1       BIC 170.4266 7.911354 0.01878603

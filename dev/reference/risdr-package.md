@@ -20,9 +20,9 @@ for complementary structural-dimension diagnostics.
 
 ## Scope
 
-Version 0.3.0 verifies the complete modelling workflow for continuous
-responses. Binary, multiclass, and censored survival extensions remain
-outside the supported modelling interface.
+The verified modelling workflow supports continuous responses. Binary,
+multiclass, and censored survival extensions remain outside the
+supported modelling interface.
 
 ## See also
 

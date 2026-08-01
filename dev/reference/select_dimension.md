@@ -48,9 +48,8 @@ scores <- as.matrix(mtcars[, c("wt", "hp", "disp")])
 dimension_table <- select_dimension(
   scores = scores,
   y = mtcars$mpg,
-  d_max = 3
+  d_max = 2
 )
-#> Warning: `d_max` was reduced to 2 to respect predictor and residual-degrees-of-freedom limits.
 dimension_table
 #>   d      AIC      BIC     CAIC    ICOMP   CICOMP
 #> 1 1 166.0294 170.4266 173.4266 163.7341 177.1313
