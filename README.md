@@ -1,5 +1,6 @@
 # risdr
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21418002.svg)](https://doi.org/10.5281/zenodo.21418002)
+[![CRAN status](https://www.r-pkg.org/badges/version/risdr)](https://CRAN.R-project.org/package=risdr)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21728850.svg)](https://doi.org/10.5281/zenodo.21728850)
 
 `risdr` provides a reproducible framework for comparative sufficient
 dimension reduction with covariance regularisation and information-theoretic
@@ -21,28 +22,31 @@ The package implements:
 
 ## Development status
 
-Version 0.3.1 is the first CRAN release candidate for `risdr`. Version 0.3.0
-remains the first public development release and is permanently archived on
-Zenodo. Version 0.3.1 has not yet been submitted to CRAN.
+Version 0.3.1 is the first CRAN release of `risdr`, published on 28 July 2026.
+It is available from CRAN with DOI [10.32614/CRAN.package.risdr] (https://doi.org/10.32614/CRAN.package.risdr).
+The release is also archived on Zenodo under version DOI [10.5281/zenodo.21728851] (https://doi.org/10.5281/zenodo.21728851).
+The Zenodo concept DOI [10.5281/zenodo.21728850] (https://doi.org/10.5281/zenodo.21728850) identifies all archived versions.
 
 ## Installation
 
-Install the package from a local source directory with:
+Install the current CRAN release with:
 
 ```r
-install.packages("path/to/risdr", repos = NULL, type = "source")
+install.packages("risdr")
+library(risdr)
 ```
 
-During repository development, use:
+Install the current development version from GitHub with:
 
 ```r
-devtools::install("path/to/risdr")
-```
-
-Install the current release candidate directly from GitHub with:
-
-```r
-pak::pak("ilovemaths/risdr")
+install.packages(
+  paste0(
+    "https://github.com/ilovemaths/risdr/",
+    "archive/refs/heads/main.tar.gz"
+  ),
+  repos = NULL,
+  type = "source"
+)
 ```
 
 ## Minimal example
