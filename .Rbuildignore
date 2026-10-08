@@ -22,3 +22,7 @@
 ^risdr\.Rproj$
 ^CITATION\.cff$
 ^CRAN-SUBMISSION$
+^tools$
+^release$
+^THESIS_PROVENANCE\.md$
+^\.gitattributes$

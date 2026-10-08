@@ -3,9 +3,9 @@ message: >-
   If you use risdr in research, please cite the software using this metadata.
 type: software
 title: "risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction"
-version: "0.3.1"
-doi: 10.5281/zenodo.21728851
-date-released: 2026-07-28
+version: "0.4.0"
+doi: 10.32614/CRAN.package.risdr
+
 authors:
   - family-names: "Olorede"
     given-names: "Kabir Opeyemi"

@@ -21,9 +21,12 @@ complementary structural-dimension diagnostics.
 
 \section{Scope}{
 
-The verified modelling workflow supports continuous responses. Binary,
-multiclass, and censored survival extensions remain outside the supported
-modelling interface.
+\code{\link[=fit_risdr]{fit_risdr()}} retains its continuous-response scope. Use
+\code{\link[=fit_risdr_sparse]{fit_risdr_sparse()}} for joint dimension and sparsity selection with
+continuous, categorical, and right-censored survival responses, or
+\code{\link[=fit_risdr_dual]{fit_risdr_dual()}} for sample-space PCA reduction when predictors outnumber
+observations. \code{\link[=fit_risdr_sparse_realdata]{fit_risdr_sparse_realdata()}} adds variance screening.
+See the sparse-survival vignette for the frozen thesis conventions.
 }
 
 \seealso{

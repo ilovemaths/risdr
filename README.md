@@ -4,8 +4,9 @@
 
 `risdr` provides a reproducible framework for comparative sufficient
 dimension reduction with covariance regularisation and information-theoretic
-structural dimension selection. The current modelling interface supports
-continuous responses.
+structural dimension selection. The existing `fit_risdr()` interface supports continuous responses.
+Version 0.4.0 adds explicit sparse, categorical, and survival interfaces
+without changing the 0.3.1 API.
 
 The package implements:
 
@@ -20,7 +21,46 @@ The package implements:
 - prediction diagnostics, subspace recovery measures, simulation utilities,
   and base R plotting methods.
 
+## Sparse and survival workflow
+
+`fit_risdr_sparse()` implements the frozen thesis engine, including joint
+selection of structural dimension and sparsity. `fit_risdr_dual()` performs
+sample-space PCA for large predictor sets. `fit_risdr_sparse_realdata()`
+adds outcome cleaning and a variance screen.
+
+```r
+set.seed(2026)
+X <- matrix(rnorm(100 * 8), nrow = 100)
+colnames(X) <- paste0("Gene", seq_len(ncol(X)))
+event_time <- rexp(100, rate = exp(0.5 * X[, 1]))
+censor_time <- rexp(100, rate = 0.5)
+time <- pmin(event_time, censor_time)
+delta <- as.integer(event_time <= censor_time)
+fit <- fit_risdr_sparse(
+  X, time, delta = delta, response_type = "survival",
+  sdr_method = "sir", cov_method = "oas", nslices = 4,
+  d_max = 3, lambda_grid = c(0, 0.05, 0.1)
+)
+fit$selection_grid
+predict(fit, X[1:2, , drop = FALSE], type = "risk")
+```
+
+Survival selection uses Efron Cox partial likelihood and defaults to
+`support_penalty = FALSE`. C1F weights are contributions in predictor
+coordinates. Dual variable rankings use the selected mapped directions;
+thresholding PCA coordinates does not imply a sparse original-gene support.
+These are exploratory methods. Independent validation and proportional-hazards
+diagnostics must be performed separately for a particular application.
+
+See `vignette("sparse-survival", package = "risdr")` and
+[THESIS_PROVENANCE.md](THESIS_PROVENANCE.md) for migration and provenance.
+
 ## Development status
+
+Version 0.4.0 is the sparse and survival release candidate. CRAN currently
+publishes 0.3.1. The frozen thesis package was locally versioned 0.3.2;
+its analysis provenance remains tied to that frozen version.
+
 
 Version 0.3.1 is the first CRAN release of `risdr`, published on 28 July 2026.
 It is available from CRAN with DOI [10.32614/CRAN.package.risdr] (https://doi.org/10.32614/CRAN.package.risdr).

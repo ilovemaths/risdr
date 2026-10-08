@@ -1,10 +1,12 @@
 Package: risdr
 Title: Regularised and Information-Theoretic Sufficient Dimension Reduction
-Version: 0.3.1.9000
+Version: 0.4.0
 Authors@R: 
     person("Kabir", "Olorede", email = "kabirolorede@gmail.com", role = c("aut", "cre"))
 Description: Implements covariance-stabilised sufficient dimension reduction
- for continuous responses with information-theoretic structural dimension
+ for continuous responses, with an additional sparse engine for continuous,
+ categorical, and right-censored survival responses and information-theoretic
+ structural dimension
  selection. Supported methods include sliced inverse regression, sliced
  average variance estimation, directional regression, and principal Hessian
  directions. Sample, ridge, Oracle Approximating Shrinkage, Ledoit-Wolf, and
@@ -23,13 +25,14 @@ Language: en-GB
 Depends:
     R (>= 4.1.0)
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports:
     stats,
     graphics,
     utils,
     MASS,
-    Matrix
+    Matrix,
+    survival,
+    nnet
 Suggests:
     dplyr,
     knitr,
@@ -43,3 +46,5 @@ Config/Needs/website: r-lib/pkgdown
 VignetteBuilder: knitr, rmarkdown
 URL: https://github.com/ilovemaths/risdr, https://ilovemaths.github.io/risdr/
 BugReports: https://github.com/ilovemaths/risdr/issues
+Config/roxygen2/version: 8.1.0
+RoxygenNote: 7.3.3
