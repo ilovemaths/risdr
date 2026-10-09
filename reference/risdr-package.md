@@ -20,9 +20,16 @@ for complementary structural-dimension diagnostics.
 
 ## Scope
 
-The verified modelling workflow supports continuous responses. Binary,
-multiclass, and censored survival extensions remain outside the
-supported modelling interface.
+[`fit_risdr()`](https://ilovemaths.github.io/risdr/reference/fit_risdr.md)
+retains its continuous-response scope. Use
+[`fit_risdr_sparse()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_sparse.md)
+for joint dimension and sparsity selection with continuous, categorical,
+and right-censored survival responses, or
+[`fit_risdr_dual()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_dual.md)
+for sample-space PCA reduction when predictors outnumber observations.
+[`fit_risdr_sparse_realdata()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_sparse_realdata.md)
+adds variance screening. See the sparse-survival vignette for the frozen
+thesis conventions.
 
 ## See also
 

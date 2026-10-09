@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,6 +20,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Core workflow</h6></li>
+    <li><a class="dropdown-item" href="../articles/sparse-survival.html">Sparse and survival SDR: the frozen thesis engine</a></li>
     <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with risdr</a></li>
     <li><a class="dropdown-item" href="../articles/epi-case-study.html">Environmental Performance Index Case Study</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -40,14 +41,34 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/ilovemaths/risdr/blob/v0.3.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/ilovemaths/risdr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.0" id="risdr-040">risdr 0.4.0<a class="anchor" aria-label="anchor" href="#risdr-040"></a></h2>
+<div class="section level3">
+<h3 id="sparse-and-survival-sdr-0-4-0">Sparse and survival SDR<a class="anchor" aria-label="anchor" href="#sparse-and-survival-sdr-0-4-0"></a></h3>
+<ul><li>Added <code><a href="../reference/fit_risdr_sparse.html">fit_risdr_sparse()</a></code> for joint structural-dimension and sparsity selection with continuous, categorical, and right-censored survival outcomes.</li>
+<li>Added <code><a href="../reference/fit_risdr_dual.html">fit_risdr_dual()</a></code> and <code><a href="../reference/fit_risdr_sparse_realdata.html">fit_risdr_sparse_realdata()</a></code> for high-dimensional predictors, with selected-direction mapping and variable-ranking records.</li>
+<li>Added censoring-status/time slicing, canonical pairwise-slice DR kernels, coordinate-level C1F adaptive weights, and complete information-criterion grids.</li>
+<li>Retained the frozen thesis convention: Efron Cox partial likelihood, <code>support_penalty = FALSE</code>, and C1F complexity for ICOMP/CICOMP.</li>
+<li>Preserved all existing 0.3.1 continuous-response interfaces and defaults. The new engine is explicitly selected through the new entry points.</li>
+<li>Added executable survival examples, a migration vignette, provenance records, and regression checks against both the frozen and existing implementations.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1.9000" id="risdr-0319000">risdr 0.3.1.9000<a class="anchor" aria-label="anchor" href="#risdr-0319000"></a></h2>
+<div class="section level3">
+<h3 id="post-release-development-0-3-1-9000">Post-release development<a class="anchor" aria-label="anchor" href="#post-release-development-0-3-1-9000"></a></h3>
+<ul><li>Updated package, citation, installation, CRAN, and Zenodo metadata following the first CRAN release.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="risdr-031">risdr 0.3.1<a class="anchor" aria-label="anchor" href="#risdr-031"></a></h2><p class="text-muted">CRAN release: 2026-07-28</p>
 <div class="section level3">
-<h3 id="cran-release-candidate-0-3-1">CRAN release candidate<a class="anchor" aria-label="anchor" href="#cran-release-candidate-0-3-1"></a></h3>
-<ul><li>Added executable examples for the principal simulation, covariance, sufficient dimension reduction, prediction, slicing, structural dimension, and subspace-assessment workflows.</li>
+<h3 id="first-cran-release-0-3-1">First CRAN release<a class="anchor" aria-label="anchor" href="#first-cran-release-0-3-1"></a></h3>
+<ul><li>Published version 0.3.1 on CRAN on 28 July 2026 and archived the release on Zenodo.</li>
+<li>Added executable examples for the principal simulation, covariance, sufficient dimension reduction, prediction, slicing, structural dimension, and subspace-assessment workflows.</li>
 <li>Hardened dependency, metadata, URL, spelling, and citation records for the first CRAN submission.</li>
 <li>Declared both <code>knitr</code> and <code>rmarkdown</code> as vignette builders so that vignettes rebuild correctly when suggested packages are not pre-installed.</li>
 <li>Added a package spelling dictionary and R-hub validation workflow.</li>

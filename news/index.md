@@ -1,11 +1,46 @@
 # Changelog
 
+## risdr 0.4.0
+
+### Sparse and survival SDR
+
+- Added
+  [`fit_risdr_sparse()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_sparse.md)
+  for joint structural-dimension and sparsity selection with continuous,
+  categorical, and right-censored survival outcomes.
+- Added
+  [`fit_risdr_dual()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_dual.md)
+  and
+  [`fit_risdr_sparse_realdata()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_sparse_realdata.md)
+  for high-dimensional predictors, with selected-direction mapping and
+  variable-ranking records.
+- Added censoring-status/time slicing, canonical pairwise-slice DR
+  kernels, coordinate-level C1F adaptive weights, and complete
+  information-criterion grids.
+- Retained the frozen thesis convention: Efron Cox partial likelihood,
+  `support_penalty = FALSE`, and C1F complexity for ICOMP/CICOMP.
+- Preserved all existing 0.3.1 continuous-response interfaces and
+  defaults. The new engine is explicitly selected through the new entry
+  points.
+- Added executable survival examples, a migration vignette, provenance
+  records, and regression checks against both the frozen and existing
+  implementations.
+
+## risdr 0.3.1.9000
+
+### Post-release development
+
+- Updated package, citation, installation, CRAN, and Zenodo metadata
+  following the first CRAN release.
+
 ## risdr 0.3.1
 
 CRAN release: 2026-07-28
 
-### CRAN release candidate
+### First CRAN release
 
+- Published version 0.3.1 on CRAN on 28 July 2026 and archived the
+  release on Zenodo.
 - Added executable examples for the principal simulation, covariance,
   sufficient dimension reduction, prediction, slicing, structural
   dimension, and subspace-assessment workflows.

@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Core workflow</h6></li>
+    <li><a class="dropdown-item" href="articles/sparse-survival.html">Sparse and survival SDR: the frozen thesis engine</a></li>
     <li><a class="dropdown-item" href="articles/getting-started.html">Getting Started with risdr</a></li>
     <li><a class="dropdown-item" href="articles/epi-case-study.html">Environmental Performance Index Case Study</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -64,8 +65,8 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="risdr">risdr<a class="anchor" aria-label="anchor" href="#risdr"></a>
 </h1></div>
-<p><a href="https://doi.org/10.5281/zenodo.21418002" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21418002.svg" alt="DOI"></a></p>
-<p><code>risdr</code> provides a reproducible framework for comparative sufficient dimension reduction with covariance regularisation and information-theoretic structural dimension selection. The current modelling interface supports continuous responses.</p>
+<p><a href="https://CRAN.R-project.org/package=risdr" class="external-link"><img src="https://www.r-pkg.org/badges/version/risdr" alt="CRAN status"></a> <a href="https://doi.org/10.5281/zenodo.21728850" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21728850.svg" alt="DOI"></a></p>
+<p><code>risdr</code> provides a reproducible framework for comparative sufficient dimension reduction with covariance regularisation and information-theoretic structural dimension selection. The existing <code><a href="reference/fit_risdr.html">fit_risdr()</a></code> interface supports continuous responses. Version 0.4.0 adds explicit sparse, categorical, and survival interfaces without changing the 0.3.1 API.</p>
 <p>The package implements:</p>
 <ul>
 <li>sliced inverse regression (SIR);</li>
@@ -78,22 +79,50 @@
 <li>prediction diagnostics, subspace recovery measures, simulation utilities, and base R plotting methods.</li>
 </ul>
 <div class="section level2">
+<h2 id="sparse-and-survival-workflow">Sparse and survival workflow<a class="anchor" aria-label="anchor" href="#sparse-and-survival-workflow"></a>
+</h2>
+<p><code><a href="reference/fit_risdr_sparse.html">fit_risdr_sparse()</a></code> implements the frozen thesis engine, including joint selection of structural dimension and sparsity. <code><a href="reference/fit_risdr_dual.html">fit_risdr_dual()</a></code> performs sample-space PCA for large predictor sets. <code><a href="reference/fit_risdr_sparse_realdata.html">fit_risdr_sparse_realdata()</a></code> adds outcome cleaning and a variance screen.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2026</span><span class="op">)</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">8</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Gene"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">event_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">100</span>, rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">0.5</span> <span class="op">*</span> <span class="va">X</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">censor_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">100</span>, rate <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmin</a></span><span class="op">(</span><span class="va">event_time</span>, <span class="va">censor_time</span><span class="op">)</span></span>
+<span><span class="va">delta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">event_time</span> <span class="op">&lt;=</span> <span class="va">censor_time</span><span class="op">)</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fit_risdr_sparse.html">fit_risdr_sparse</a></span><span class="op">(</span></span>
+<span>  <span class="va">X</span>, <span class="va">time</span>, delta <span class="op">=</span> <span class="va">delta</span>, response_type <span class="op">=</span> <span class="st">"survival"</span>,</span>
+<span>  sdr_method <span class="op">=</span> <span class="st">"sir"</span>, cov_method <span class="op">=</span> <span class="st">"oas"</span>, nslices <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  d_max <span class="op">=</span> <span class="fl">3</span>, lambda_grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">fit</span><span class="op">$</span><span class="va">selection_grid</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, <span class="va">X</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>, type <span class="op">=</span> <span class="st">"risk"</span><span class="op">)</span></span></code></pre></div>
+<p>Survival selection uses Efron Cox partial likelihood and defaults to <code>support_penalty = FALSE</code>. C1F weights are contributions in predictor coordinates. Dual variable rankings use the selected mapped directions; thresholding PCA coordinates does not imply a sparse original-gene support. These are exploratory methods. Independent validation and proportional-hazards diagnostics must be performed separately for a particular application.</p>
+<p>See <code><a href="articles/sparse-survival.html">vignette("sparse-survival", package = "risdr")</a></code> and <a href="THESIS_PROVENANCE.html">THESIS_PROVENANCE.md</a> for migration and provenance.</p>
+</div>
+<div class="section level2">
 <h2 id="development-status">Development status<a class="anchor" aria-label="anchor" href="#development-status"></a>
 </h2>
-<p>Version 0.3.1 is the first CRAN release candidate for <code>risdr</code>. Version 0.3.0 remains the first public development release and is permanently archived on Zenodo. Version 0.3.1 has not yet been submitted to CRAN.</p>
+<p>Version 0.4.0 is the sparse and survival release candidate. CRAN currently publishes 0.3.1. The frozen thesis package was locally versioned 0.3.2; its analysis provenance remains tied to that frozen version.</p>
+<p>Version 0.3.1 is the first CRAN release of <code>risdr</code>, published on 28 July 2026. It is available from CRAN with DOI [10.32614/CRAN.package.risdr] (<a href="https://doi.org/10.32614/CRAN.package.risdr" class="external-link uri">https://doi.org/10.32614/CRAN.package.risdr</a>). The release is also archived on Zenodo under version DOI [10.5281/zenodo.21728851] (<a href="https://doi.org/10.5281/zenodo.21728851" class="external-link uri">https://doi.org/10.5281/zenodo.21728851</a>). The Zenodo concept DOI [10.5281/zenodo.21728850] (<a href="https://doi.org/10.5281/zenodo.21728850" class="external-link uri">https://doi.org/10.5281/zenodo.21728850</a>) identifies all archived versions.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install the package from a local source directory with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"path/to/risdr"</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></span></code></pre></div>
-<p>During repository development, use:</p>
+<p>Install the current CRAN release with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"path/to/risdr"</span><span class="op">)</span></span></code></pre></div>
-<p>Install the current release candidate directly from GitHub with:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"risdr"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ilovemaths/risdr" class="external-link">risdr</a></span><span class="op">)</span></span></code></pre></div>
+<p>Install the current development version from GitHub with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"ilovemaths/risdr"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>    <span class="st">"https://github.com/ilovemaths/risdr/"</span>,</span>
+<span>    <span class="st">"archive/refs/heads/main.tar.gz"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  repos <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"source"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="minimal-example">Minimal example<a class="anchor" aria-label="anchor" href="#minimal-example"></a>

@@ -2,6 +2,8 @@
 
 ### Core workflow
 
+- [Sparse and survival SDR: the frozen thesis
+  engine](https://ilovemaths.github.io/risdr/articles/sparse-survival.md):
 - [Getting Started with
   risdr](https://ilovemaths.github.io/risdr/articles/getting-started.md):
 - [Environmental Performance Index Case

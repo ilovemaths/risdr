@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">risdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,6 +20,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Core workflow</h6></li>
+    <li><a class="dropdown-item" href="../articles/sparse-survival.html">Sparse and survival SDR: the frozen thesis engine</a></li>
     <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with risdr</a></li>
     <li><a class="dropdown-item" href="../articles/epi-case-study.html">Environmental Performance Index Case Study</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -77,6 +78,69 @@
 
         <dt>
 
+          <code><a href="fit_risdr_sparse.html">fit_risdr_sparse()</a></code>
+
+        </dt>
+        <dd>Fit regularised and information-theoretic sufficient dimension reduction</dd>
+
+        <dt>
+
+          <code><a href="fit_risdr_dual.html">fit_risdr_dual()</a></code>
+
+        </dt>
+        <dd>Fit dual high-dimensional RISDR</dd>
+
+        <dt>
+
+          <code><a href="fit_risdr_sparse_realdata.html">fit_risdr_sparse_realdata()</a></code>
+
+        </dt>
+        <dd>Fit RISDR to real high-dimensional data</dd>
+
+        <dt>
+
+          <code><a href="C1F.html">C1F()</a></code>
+
+        </dt>
+        <dd>C1F complexity and induced adaptive weights</dd>
+
+        <dt>
+
+          <code><a href="dual_pca_scores.html">dual_pca_scores()</a></code>
+
+        </dt>
+        <dd>Dual PCA score construction for p much larger than n</dd>
+
+        <dt>
+
+          <code><a href="fit_sparse_grid.html">fit_sparse_grid()</a></code>
+
+        </dt>
+        <dd>Fit sparse SDR directions over a lambda grid</dd>
+
+        <dt>
+
+          <code><a href="summarise_sparsity.html">summarise_sparsity()</a></code>
+
+        </dt>
+        <dd>Summarise sparsity pattern</dd>
+
+        <dt>
+
+          <code><a href="weighted_soft_threshold.html">weighted_soft_threshold()</a></code>
+
+        </dt>
+        <dd>Weighted soft-threshold operator</dd>
+
+        <dt>
+
+          <code><a href="weighted_sparsify_directions.html">weighted_sparsify_directions()</a></code>
+
+        </dt>
+        <dd>Weighted sparse directions from dense SDR directions</dd>
+
+        <dt>
+
           <code><a href="compute_dr.html">compute_dr()</a></code>
 
         </dt>
@@ -84,10 +148,31 @@
 
         <dt>
 
+          <code><a href="compute_ic.html">compute_ic()</a></code>
+
+        </dt>
+        <dd>Compute one reduced-model information criterion</dd>
+
+        <dt>
+
+          <code><a href="compute_ic_values.html">compute_ic_values()</a></code>
+
+        </dt>
+        <dd>Compute all reduced-model information criteria</dd>
+
+        <dt>
+
           <code><a href="compute_information_criteria.html">compute_information_criteria()</a></code>
 
         </dt>
         <dd>Compute model selection criteria</dd>
+
+        <dt>
+
+          <code><a href="compute_penalty_weights.html">compute_penalty_weights()</a></code>
+
+        </dt>
+        <dd>Compute adaptive penalty weights from C1F variable contributions</dd>
 
         <dt>
 
@@ -140,6 +225,13 @@
 
         <dt>
 
+          <code><a href="predict.risdr_sparse.html">predict(<i>&lt;risdr_sparse&gt;</i>)</a></code> <code><a href="predict.risdr_sparse.html">predict(<i>&lt;risdr_dual&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Predict from the sparse or dual SDR engine</dd>
+
+        <dt>
+
           <code><a href="predict_downstream_lm.html">predict_downstream_lm()</a></code>
 
         </dt>
@@ -161,10 +253,31 @@
 
         <dt>
 
+          <code><a href="summary.risdr_dual.html">summary(<i>&lt;risdr_dual&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Summary method for dual RISDR objects</dd>
+
+        <dt>
+
+          <code><a href="summary.risdr_sparse.html">summary(<i>&lt;risdr_sparse&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Summarise risdr object</dd>
+
+        <dt>
+
           <code><a href="print.risdr.html">print(<i>&lt;risdr&gt;</i>)</a></code>
 
         </dt>
         <dd>Print risdr object</dd>
+
+        <dt>
+
+          <code><a href="print.risdr_dual.html">print(<i>&lt;risdr_dual&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print method for dual RISDR objects</dd>
 
         <dt>
 
@@ -175,7 +288,28 @@
 
         <dt>
 
+          <code><a href="print.risdr_sparse.html">print(<i>&lt;risdr_sparse&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print risdr object</dd>
+
+        <dt>
+
+          <code><a href="print.risdr_sparse_realdata.html">print(<i>&lt;risdr_sparse_realdata&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print real-data RISDR workflow</dd>
+
+        <dt>
+
           <code><a href="print.summary.risdr.html">print(<i>&lt;summary.risdr&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print summary of risdr object</dd>
+
+        <dt>
+
+          <code><a href="print.summary.risdr_sparse.html">print(<i>&lt;summary.risdr_sparse&gt;</i>)</a></code>
 
         </dt>
         <dd>Print summary of risdr object</dd>
@@ -530,6 +664,13 @@
 
         </dt>
         <dd>Compute slice proportions</dd>
+
+        <dt>
+
+          <code><a href="slice_response.html">slice_response</a></code>
+
+        </dt>
+        <dd>Slice response for inverse regression</dd>
 
         <dt>
 

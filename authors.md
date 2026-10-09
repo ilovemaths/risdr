@@ -7,18 +7,19 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/ilovemaths/risdr/blob/v0.3.1/inst/CITATION)
+[`inst/CITATION`](https://github.com/ilovemaths/risdr/blob/main/inst/CITATION)
 
 Olorede, K. O. (2026). risdr: Regularised and Information-Theoretic
-Sufficient Dimension Reduction (R package version 0.3.1).
-https://github.com/ilovemaths/risdr
+Sufficient Dimension Reduction (R package version 0.4.0).
+https://doi.org/10.32614/CRAN.package.risdr
 
     @Manual{,
       title = {risdr: Regularised and Information-Theoretic Sufficient Dimension Reduction},
       author = {Kabir Opeyemi Olorede},
       year = {2026},
-      note = {R package version 0.3.1},
-      url = {https://github.com/ilovemaths/risdr},
+      doi = {10.32614/CRAN.package.risdr},
+      note = {R package version 0.4.0},
+      url = {https://CRAN.R-project.org/package=risdr},
     }
 
 Olorede, K. O., and Yahya, W. B. (2019). A New Covariance Estimator for

@@ -11,10 +11,35 @@
 
 - [`fit_risdr()`](https://ilovemaths.github.io/risdr/reference/fit_risdr.md)
   : Fit regularised and information-theoretic SDR model
+- [`fit_risdr_sparse()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_sparse.md)
+  : Fit regularised and information-theoretic sufficient dimension
+  reduction
+- [`fit_risdr_dual()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_dual.md)
+  : Fit dual high-dimensional RISDR
+- [`fit_risdr_sparse_realdata()`](https://ilovemaths.github.io/risdr/reference/fit_risdr_sparse_realdata.md)
+  : Fit RISDR to real high-dimensional data
+- [`C1F()`](https://ilovemaths.github.io/risdr/reference/C1F.md) : C1F
+  complexity and induced adaptive weights
+- [`dual_pca_scores()`](https://ilovemaths.github.io/risdr/reference/dual_pca_scores.md)
+  : Dual PCA score construction for p much larger than n
+- [`fit_sparse_grid()`](https://ilovemaths.github.io/risdr/reference/fit_sparse_grid.md)
+  : Fit sparse SDR directions over a lambda grid
+- [`summarise_sparsity()`](https://ilovemaths.github.io/risdr/reference/summarise_sparsity.md)
+  : Summarise sparsity pattern
+- [`weighted_soft_threshold()`](https://ilovemaths.github.io/risdr/reference/weighted_soft_threshold.md)
+  : Weighted soft-threshold operator
+- [`weighted_sparsify_directions()`](https://ilovemaths.github.io/risdr/reference/weighted_sparsify_directions.md)
+  : Weighted sparse directions from dense SDR directions
 - [`compute_dr()`](https://ilovemaths.github.io/risdr/reference/compute_dr.md)
   : Compute Directional Regression
+- [`compute_ic()`](https://ilovemaths.github.io/risdr/reference/compute_ic.md)
+  : Compute one reduced-model information criterion
+- [`compute_ic_values()`](https://ilovemaths.github.io/risdr/reference/compute_ic_values.md)
+  : Compute all reduced-model information criteria
 - [`compute_information_criteria()`](https://ilovemaths.github.io/risdr/reference/compute_information_criteria.md)
   : Compute model selection criteria
+- [`compute_penalty_weights()`](https://ilovemaths.github.io/risdr/reference/compute_penalty_weights.md)
+  : Compute adaptive penalty weights from C1F variable contributions
 - [`compute_phd()`](https://ilovemaths.github.io/risdr/reference/compute_phd.md)
   : Compute Principal Hessian Directions
 - [`compute_save()`](https://ilovemaths.github.io/risdr/reference/compute_save.md)
@@ -29,17 +54,32 @@
   : Extract SDR loadings
 - [`predict(`*`<risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/predict.risdr.md)
   : Predict method for risdr objects
+- [`predict(`*`<risdr_sparse>`*`)`](https://ilovemaths.github.io/risdr/reference/predict.risdr_sparse.md)
+  [`predict(`*`<risdr_dual>`*`)`](https://ilovemaths.github.io/risdr/reference/predict.risdr_sparse.md)
+  : Predict from the sparse or dual SDR engine
 - [`predict_downstream_lm()`](https://ilovemaths.github.io/risdr/reference/predict_downstream_lm.md)
   : Predict from downstream SDR regression model
 - [`prediction_correlation()`](https://ilovemaths.github.io/risdr/reference/prediction_correlation.md)
   : Prediction correlation
 - [`summary(`*`<risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/summary.risdr.md)
   : Summarise risdr object
+- [`summary(`*`<risdr_dual>`*`)`](https://ilovemaths.github.io/risdr/reference/summary.risdr_dual.md)
+  : Summary method for dual RISDR objects
+- [`summary(`*`<risdr_sparse>`*`)`](https://ilovemaths.github.io/risdr/reference/summary.risdr_sparse.md)
+  : Summarise risdr object
 - [`print(`*`<risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr.md)
   : Print risdr object
+- [`print(`*`<risdr_dual>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr_dual.md)
+  : Print method for dual RISDR objects
 - [`print(`*`<risdr_realdata>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr_realdata.md)
   : Print real-data RISDR workflow
+- [`print(`*`<risdr_sparse>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr_sparse.md)
+  : Print risdr object
+- [`print(`*`<risdr_sparse_realdata>`*`)`](https://ilovemaths.github.io/risdr/reference/print.risdr_sparse_realdata.md)
+  : Print real-data RISDR workflow
 - [`print(`*`<summary.risdr>`*`)`](https://ilovemaths.github.io/risdr/reference/print.summary.risdr.md)
+  : Print summary of risdr object
+- [`print(`*`<summary.risdr_sparse>`*`)`](https://ilovemaths.github.io/risdr/reference/print.summary.risdr_sparse.md)
   : Print summary of risdr object
 
 ## Covariance estimation and stabilisation
@@ -143,6 +183,8 @@
   : Compute slice means
 - [`slice_proportions()`](https://ilovemaths.github.io/risdr/reference/slice_proportions.md)
   : Compute slice proportions
+- [`slice_response`](https://ilovemaths.github.io/risdr/reference/slice_response.md)
+  : Slice response for inverse regression
 - [`slice_summary()`](https://ilovemaths.github.io/risdr/reference/slice_summary.md)
   : Summarise response slices
 - [`simulate_risdr_data()`](https://ilovemaths.github.io/risdr/reference/simulate_risdr_data.md)
