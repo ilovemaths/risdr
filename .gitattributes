@@ -1,0 +1,3 @@
+
+# Preserve the exact original thesis-source bytes and line endings.
+tools/frozen/risdr-0.3.2/** -text -whitespace

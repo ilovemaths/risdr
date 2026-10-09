@@ -1,3 +1,20 @@
+# risdr 0.4.0
+
+## Sparse and survival SDR
+
+- Added `fit_risdr_sparse()` for joint structural-dimension and sparsity
+  selection with continuous, categorical, and right-censored survival outcomes.
+- Added `fit_risdr_dual()` and `fit_risdr_sparse_realdata()` for high-dimensional
+  predictors, with selected-direction mapping and variable-ranking records.
+- Added censoring-status/time slicing, canonical pairwise-slice DR kernels,
+  coordinate-level C1F adaptive weights, and complete information-criterion grids.
+- Retained the frozen thesis convention: Efron Cox partial likelihood,
+  `support_penalty = FALSE`, and C1F complexity for ICOMP/CICOMP.
+- Preserved all existing 0.3.1 continuous-response interfaces and defaults.
+  The new engine is explicitly selected through the new entry points.
+- Added executable survival examples, a migration vignette, provenance records,
+  and regression checks against both the frozen and existing implementations.
+
 # risdr 0.3.1.9000
 
 ## Post-release development

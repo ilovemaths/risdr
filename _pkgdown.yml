@@ -22,6 +22,7 @@ articles:
   - title: Core workflow
     navbar: Core workflow
     contents:
+      - sparse-survival
       - getting-started
       - epi-case-study
   - title: Methods
@@ -38,6 +39,15 @@ reference:
   - title: Model fitting and methods
     contents:
       - fit_risdr
+      - fit_risdr_sparse
+      - fit_risdr_dual
+      - fit_risdr_sparse_realdata
+      - C1F
+      - dual_pca_scores
+      - fit_sparse_grid
+      - summarise_sparsity
+      - weighted_soft_threshold
+      - weighted_sparsify_directions
       - starts_with("compute_")
       - extract_loadings
       - starts_with("predict.")

@@ -1,0 +1,154 @@
+---
+title: "Sparse and survival SDR: the frozen thesis engine"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sparse and survival SDR: the frozen thesis engine}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(risdr)
+```
+
+## Choosing the interface
+
+Version 0.4.0 extends the existing `risdr` package. `fit_risdr()` continues
+to use the continuous-response engine published in 0.3.1, including its
+component argument lists, defaults, prediction, and cross-validation tools.
+The additional engine has explicit entry points:
+
+| Entry point | Purpose |
+|:--|:--|
+| `fit_risdr_sparse()` | Joint dimension and sparsity selection |
+| `fit_risdr_sparse_realdata()` | Outcome cleaning and variance screening |
+| `fit_risdr_dual()` | Sample-space PCA and mapping to predictor coordinates |
+
+The sparse engine accepts continuous, categorical, and right-censored survival
+responses. It requires covariance stabilisation and uses C1F complexity.
+It does not replace the existing C1/C1F continuous-response selector.
+
+The locally frozen thesis package was versioned 0.3.2. Its `fit_risdr()` calls
+map to `fit_risdr_sparse()` in this release, and its `fit_risdr_realdata()` calls
+map to `fit_risdr_sparse_realdata()`. The numerical engine is preserved;
+private helper names and the sparse fit classes isolate it from the existing API.
+The original thesis results remain associated with the frozen 0.3.2 sources.
+
+## A reproducible censored-survival example
+
+This example uses synthetic data and does not reproduce the thesis cohort.
+
+```{r data}
+set.seed(2026)
+X <- matrix(rnorm(100 * 8), nrow = 100)
+colnames(X) <- paste0("Gene", seq_len(ncol(X)))
+event_time <- rexp(100, rate = exp(0.5 * X[, 1] - 0.3 * X[, 2]))
+censor_time <- rexp(100, rate = 0.5)
+time <- pmin(event_time, censor_time)
+delta <- as.integer(event_time <= censor_time)
+table(delta)
+```
+
+The event indicator is 1 for an observed event and 0 for a right-censored record.
+Time units must be consistent and recorded by the analyst. Four quantile slices
+are formed within each censoring-status group, yielding up to eight occupied
+slices. The engine uses these labels in SIR, SAVE, and canonical pairwise-slice
+DR. This slicing convention is part of the frozen methodology; it does not
+by itself establish robustness to informative censoring.
+
+```{r fit}
+fit <- fit_risdr_sparse(
+  X, time, delta = delta, response_type = "survival",
+  sdr_method = "sir", cov_method = "oas", nslices = 4,
+  d_max = 3, selector = "cicomp", lambda_grid = c(0, 0.05, 0.1),
+  support_penalty = FALSE
+)
+c(d = fit$d, lambda = fit$best_lambda)
+fit$selection_grid
+```
+
+For each dimension and lambda, a Cox model is fitted to the corresponding
+reduced predictors using Efron ties. Write its partial log likelihood as
+`ell`, and the effective count as `k`. With the thesis default
+`support_penalty = FALSE`, `k = d` for survival outcomes. The criteria are:
+
+- AIC: `-2 * ell + 2 * k`;
+- BIC: `-2 * ell + k * log(n)`;
+- CAIC: `-2 * ell + k * (log(n) + 1)`;
+- ICOMP: `-2 * ell + 2 * k + 2 * C1F`;
+- CICOMP: `-2 * ell + k * (log(n) + 1) + 2 * C1F`.
+
+C1F is computed from the covariance of the reduced predictors. The final pair
+minimises the requested criterion across the candidate grid. An explicitly
+fixed `d` instead selects lambda within that dimension. Failed candidates are
+recorded in the grid. All comparisons must use compatible outcomes and samples.
+
+## Variable selection
+
+Adaptive weights distribute C1F over predictor coordinates using squared
+covariance eigenvector entries. They are normalised to mean one. Weighted soft
+thresholding operates on the direction entries. The frozen safeguard restores
+a dense direction if thresholding removes it entirely, so support size need
+not decrease monotonically over every lambda grid.
+
+```{r support}
+B <- fit$directions
+support <- data.frame(variable = rownames(B), norm = sqrt(rowSums(B^2)))
+support <- support[support$norm > 1e-8, , drop = FALSE]
+support[order(support$norm, decreasing = TRUE), , drop = FALSE]
+```
+
+The screened wrapper applies its variance filter after cleaning incomplete
+outcomes. Its `selected_variables` table reports the active row norms of the
+selected direction matrix. A nonzero loading or a high rank is a descriptive
+selection result, not a significance test or a validated biological marker.
+
+## The dual workflow
+
+```{r dual}
+dual <- fit_risdr_dual(
+  X, time, delta = delta, response_type = "survival",
+  dual_rank = 5, d_max = 3, sdr_method = "sir", cov_method = "oas",
+  lambda_grid = c(0, 0.05, 0.1), gene_select_top = 4, verbose = FALSE
+)
+dual$selected_variables
+```
+
+The dual path forms the sample-space Gram matrix, avoiding a full predictor
+covariance. It retains PCA scores and fits the sparse engine in that score
+space. The inner standardisation is undone before mapping selected directions
+through PCA loadings. The ranking uses the row Euclidean norms of those selected
+mapped directions. Dense-direction mappings are separately retained.
+Sparsity among retained PCA coordinates does not generally yield zero loadings
+for original predictors. `gene_select_top` and `gene_select_quantile` therefore
+define a ranking rule and must be reported separately from coordinate sparsity.
+
+## Prediction and diagnostics
+
+```{r prediction}
+predict(fit, X[1:2, , drop = FALSE], type = "scores")
+predict(fit, X[1:2, , drop = FALSE], type = "risk")
+predict(dual, X[1:2, , drop = FALSE], type = "scores")
+```
+
+Survival predictions are Cox linear predictors or relative risks, not survival
+times. Training predictor names are checked and reordered; the training centres
+and scales are reused. The prediction adapters do not change the frozen fits.
+
+```{r ph}
+survival::cox.zph(fit$downstream_fit, transform = "km", terms = TRUE, global = TRUE)
+```
+
+Proportional-hazards diagnostics apply to the downstream model actually fitted.
+A small diagnostic p value indicates evidence of departure from proportional
+hazards; a nonsignificant value is not proof of the assumption. The model above
+uses all selected coordinates. A diagnostic for a separate first-coordinate
+model addresses that separate model.
+
+Apparent in-sample criteria, concordance, and Kaplan-Meier separation do not
+constitute external validation. For out-of-sample assessment, repeat all
+outcome-dependent selection and preprocessing within training partitions.
+The existing continuous-response cross-validation utilities do not evaluate
+the new survival engine. An independent cohort remains necessary for external
+validation of a particular application.
