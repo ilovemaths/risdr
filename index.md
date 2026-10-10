@@ -64,7 +64,7 @@ particular application.
 See
 [`vignette("sparse-survival", package = "risdr")`](https://ilovemaths.github.io/risdr/articles/sparse-survival.md)
 and
-[THESIS_PROVENANCE.md](https://ilovemaths.github.io/risdr/THESIS_PROVENANCE.md)
+[THESIS_PROVENANCE.md](https://github.com/ilovemaths/risdr/blob/92993e75e6fad8ffdc844d30f7c33357678c4233/THESIS_PROVENANCE.md)
 for migration and provenance.
 
 ## Development status
