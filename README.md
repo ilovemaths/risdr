@@ -53,7 +53,7 @@ These are exploratory methods. Independent validation and proportional-hazards
 diagnostics must be performed separately for a particular application.
 
 See `vignette("sparse-survival", package = "risdr")` and
-[THESIS_PROVENANCE.md](THESIS_PROVENANCE.md) for migration and provenance.
+[THESIS_PROVENANCE.md](https://github.com/ilovemaths/risdr/blob/92993e75e6fad8ffdc844d30f7c33357678c4233/THESIS_PROVENANCE.md) for migration and provenance.
 
 ## Development status
 
