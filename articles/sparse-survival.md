@@ -181,8 +181,8 @@ predict(fit, X[1:2, , drop = FALSE], type = "risk")
 #> 0.560253 1.043958
 predict(dual, X[1:2, , drop = FALSE], type = "scores")
 #>              Z1
-#> [1,]  0.9523254
-#> [2,] -0.2836475
+#> [1,] -0.9523254
+#> [2,]  0.2836475
 ```
 
 Survival predictions are Cox linear predictors or relative risks, not
