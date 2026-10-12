@@ -1812,7 +1812,6 @@ print.summary.risdr_sparse <- function(x, ...) {
 #' @return A list containing integer slice labels and metadata.
 #' @export
 #' @name slice_response
-NULL
 slice_response <- function(y, nslices = 5L, response_type = c("continuous", "categorical",
     "survival"), delta = NULL) {
     response_type <- match.arg(response_type)

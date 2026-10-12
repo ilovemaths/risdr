@@ -56,7 +56,8 @@ replace_classes <- function(x) {
     for (i in seq_along(x)) if (!is.null(x[[i]]) && !identical(x[[i]], quote(expr = ))) x[[i]] <- replace_classes(x[[i]])
   x
 }
-doc_text <- paste(readLines("tools/thesis-documentation.R"), collapse = "\n")
+# Append the final newline so the last NULL separator is consumed too.
+doc_text <- paste(c(readLines("tools/thesis-documentation.R"), ""), collapse = "\n")
 doc_blocks <- strsplit(doc_text, "\nNULL\n", fixed = TRUE)[[1L]]
 docs <- list()
 for (block in doc_blocks) {

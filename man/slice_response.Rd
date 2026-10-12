@@ -3,6 +3,14 @@
 \name{slice_response}
 \alias{slice_response}
 \title{Slice response for inverse regression}
+\usage{
+slice_response(
+  y,
+  nslices = 5L,
+  response_type = c("continuous", "categorical", "survival"),
+  delta = NULL
+)
+}
 \arguments{
 \item{y}{Response vector. For survival data, observed time.}
 
