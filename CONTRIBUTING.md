@@ -11,8 +11,10 @@ scope.
     change.
 3.  Add regression tests for numerical changes and failure-path tests
     for new validation.
-4.  Run `devtools::document()`, `devtools::test()`, and
-    `devtools::check(args = "--as-cran")`.
+4.  Run
+    [`devtools::document()`](https://devtools.r-lib.org/reference/document.html),
+    [`devtools::test()`](https://devtools.r-lib.org/reference/test.html),
+    and `devtools::check(args = "--as-cran")`.
 5.  Update `NEWS.md` when behaviour visible to users changes.
 6.  Submit a pull request describing the statistical and software
     implications.

@@ -183,7 +183,7 @@
   : Compute slice means
 - [`slice_proportions()`](https://ilovemaths.github.io/risdr/reference/slice_proportions.md)
   : Compute slice proportions
-- [`slice_response`](https://ilovemaths.github.io/risdr/reference/slice_response.md)
+- [`slice_response()`](https://ilovemaths.github.io/risdr/reference/slice_response.md)
   : Slice response for inverse regression
 - [`slice_summary()`](https://ilovemaths.github.io/risdr/reference/slice_summary.md)
   : Summarise response slices

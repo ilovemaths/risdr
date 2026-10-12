@@ -5,6 +5,17 @@ survival responses. For censored survival data, double slicing is used
 by first splitting on censoring status and then slicing observed time
 within each status group.
 
+## Usage
+
+``` r
+slice_response(
+  y,
+  nslices = 5L,
+  response_type = c("continuous", "categorical", "survival"),
+  delta = NULL
+)
+```
+
 ## Arguments
 
 - y:
